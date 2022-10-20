@@ -4,3 +4,32 @@
     padding: 10px;
     text-align: center;
   }
+fieldset{
+  border-style:dotted;
+  border-color: gray;
+}
+a.removefriend:link{
+  color: red;
+}
+a{
+  text-decoration: none;
+}
+a:link{
+  color: darkcyan;
+}
+a:visited{
+  color :darkslateblue;
+}
+a.removefriend:visited{
+  color: darkred;
+}
+a.removefriend:hover{
+  background-color: black;
+  opacity: 0.5;
+  color:red
+}
+a:hover{
+  background-color: black;
+  opacity: 0.5;
+  color:cyan;
+}
