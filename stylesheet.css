@@ -63,3 +63,6 @@ a:hover{
   opacity: 0.5;
   color:cyan;
 }
+a.isbutton:hover{
+  background-color: white;
+}
