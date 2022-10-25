@@ -56,7 +56,8 @@ a.removefriend:visited{
 a.removefriend:hover{
   background-color: black;
   opacity: 0.5;
-  color:red
+  color:red;
+  font-weight: bold;
 }
 a:hover{
   background-color: black;
@@ -65,4 +66,7 @@ a:hover{
 }
 a.isbutton:hover{
   background-color: white;
+}
+a > span{
+  font-weight: bold;
 }
