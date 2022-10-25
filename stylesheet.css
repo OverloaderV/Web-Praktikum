@@ -37,6 +37,8 @@ h2 {
 fieldset{
   border-style:dotted;
   border-color: gray;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 a.removefriend:link{
   color: red;
@@ -69,4 +71,15 @@ a.isbutton:hover{
 }
 a > span{
   font-weight: bold;
+}
+div.userinput{
+  margin:10px;
+}
+label.userinput{
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+}
+div.userinput > input{
+  padding: 5px;
 }
