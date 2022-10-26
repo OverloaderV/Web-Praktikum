@@ -12,14 +12,20 @@
     <h1>Register Yourself</h1>
     </p>
     <form action="friends.html">
-        <fieldset>
+        <fieldset class="login">
             <legend>Register</legend>
-            <label for="Name">Username</label>
-            <input required type="text" name="Name" id="Name"><br>
-            <label for="Pass">Password</label>
-            <input type="password" name="Pass" id="Pass"><br>
-            <label for="cPass">Confirm Password</label>
-            <input type="password" name="cPass" id="cPass">
+            <div class="userinput">
+                <label for="Name" class="userinput">Username</label>
+                <input required type="text" name="Name" id="Name" placeholder="Username">
+            </div>
+            <div class="userinput">
+                <label for="Pass" class="userinput">Password</label>
+                <input type="password" name="Pass" id="Pass" placeholder="Password">
+            </div>
+            <div class="userinput">
+                <label for="cPass" class="userinput">Confirm Password</label>
+                <input type="password" name="cPass" id="cPass" placeholder="Confirm Password">
+            </div>
         </fieldset>
         <a href="login.html" class="isbutton">
             <button type="button" class="button_grey">Cancel</button>

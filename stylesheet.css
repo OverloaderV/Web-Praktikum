@@ -37,6 +37,9 @@ h2 {
 fieldset{
   border-style:dotted;
   border-color: gray;
+}
+fieldset.login{
+  
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -77,8 +80,9 @@ div.userinput{
 }
 label.userinput{
   display: inline-block;
-  width: 100px;
+  width: 150px;
   text-align: right;
+  white-space: nowrap;
 }
 div.userinput > input{
   padding: 5px;
