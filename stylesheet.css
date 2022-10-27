@@ -72,6 +72,7 @@ a:hover{
 a.isbutton:hover{
   background-color: white;
   opacity:0.8;
+  
 }
 a > span{
   font-weight: bold;
@@ -103,4 +104,21 @@ textarea.userprofile{
 }
 input[type="submit"]:hover{
   background-color: #3a8cd8;
+}
+input.wide{
+  padding: 14px;
+  margin: 4px;
+  width: 70%;
+}
+button.wide{
+  width: 20%;
+  float: right;
+}
+input.widebutton{
+  width: 20%;
+  float: right;
+}
+hr{
+  border-style:dashed ;
+  
 }
