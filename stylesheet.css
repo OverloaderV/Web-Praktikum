@@ -146,6 +146,38 @@ label#aboutme{
 dt{
   font-weight: bold;
 }
+.chatbox{
+  border-color: lightgrey;
+  border-radius: 10px;
+  border-style: solid;
+}
+span.cmsg{
+  float: left;
+}
+span.ctime{
+  float: right;
+  color: lightgray;
+}
+span.urmsg{
+  float: right;
+  background-color: #3072af;
+  color: white;
+  border-radius: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+ul{
+  list-style: none;
+}
+a[href="chat.html"]{
+  color: black;
+}
+a[href="chat.html"]:hover{
+  color: white;
+}
+ul > li{
+  margin: 5px; 
+}
 @media only screen and (max-width: 900px) {
   .button_coloured{
     width: 100%!important;
