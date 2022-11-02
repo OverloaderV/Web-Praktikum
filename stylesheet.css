@@ -130,3 +130,19 @@ hr{
   border-style:dashed ;
   
 }
+img#pfpic{
+  width: 30%;
+  float: left;
+  margin-right: 5%;
+}
+.container{
+  color: gray;
+  margin-right: 5%;
+  padding: 3%;
+}
+label#aboutme{
+  color: black;
+}
+dt{
+  font-weight: bold;
+}
