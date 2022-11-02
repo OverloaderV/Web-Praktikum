@@ -146,3 +146,14 @@ label#aboutme{
 dt{
   font-weight: bold;
 }
+@media only screen and (max-width: 900px) {
+  .button_coloured{
+    width: 100%!important;
+  }
+  .button_grey{
+    width: 100%;
+  }
+  input.wide{
+    width: 95%!important;
+  }
+}
