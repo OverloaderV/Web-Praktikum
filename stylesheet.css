@@ -180,12 +180,15 @@ ul > li{
 }
 @media only screen and (max-width: 900px) {
   .button_coloured{
-    width: 100%!important;
+    width: 100%;
+  }
+  input.widebutton{
+    width: 100%;
   }
   .button_grey{
     width: 100%;
   }
   input.wide{
-    width: 95%!important;
+    width: 95%;
   }
 }
