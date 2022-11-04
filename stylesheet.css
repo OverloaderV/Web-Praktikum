@@ -178,6 +178,13 @@ a[href="chat.html"]:hover{
 ul > li{
   margin: 5px; 
 }
+div#ul{
+  width: 70%;
+  padding: 5px;
+}
+li.friendsddown{
+  cursor: pointer;
+}
 @media only screen and (max-width: 900px) {
   .button_coloured{
     width: 100%;
