@@ -5,11 +5,10 @@ xmlhttp.onreadystatechange = function () {
         console.log(xmlhttp.responseText)
         data = JSON.parse(xmlhttp.responseText);
         console.log(data);
-        let element = document.createElement("ul");
-        document.body.appendChild(element);
+  
         let div = document.createElement("div");
         div.id="ul"
-        element.appendChild(div);
+        document.body.appendChild(div);
     }
     
 };
@@ -21,16 +20,17 @@ xmlhttp.send();
 function keyup(){
     let input = document.getElementById("username").value;
     document.getElementById("ul").innerText = '';
-    let li = document.createElement("li");
-    li.classList.add("friendsddown");
+    let p = document.createElement("p");
+    p.classList.add("friendsddown");
+    p.style.marginLeft="10px";
     if(input != ''){
         let j = 0;
     for(let i = 0; i < data.length;i++){
             if(data[i].startsWith(input)&&j<6){
-                li.innerText =data[i];
-                li.onclick = function(){document.getElementById("username").value = data[i];document.getElementById("ul").innerText = '';};
+                p.innerText =data[i];
+                p.onclick = function(){document.getElementById("username").value = data[i];document.getElementById("ul").innerText = '';};
                 let ul = document.getElementById("ul");
-                ul.appendChild(li);
+                ul.appendChild(p);
                 j++;
             }
         
