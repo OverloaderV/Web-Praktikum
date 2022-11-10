@@ -42,5 +42,6 @@ function checkname(){
     let bool = data.includes(document.getElementById("username").value);
     if(!bool){
         alert("User " +document.getElementById("username").value+ " doesn't exist.")
+        return false;
     }
 }
