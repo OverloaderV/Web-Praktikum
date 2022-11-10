@@ -54,7 +54,8 @@
                 </ol>
                 <hr>
                 <form onsubmit="return checkname()">
-                <input id="username" type="text" name="username" placeholder="Add Friend to List" class="wide" onkeyup="keyup()" autocomplete="off">
+                <input id="username" type="text" name="username" placeholder="Add Friend to List" class="wide" onkeyup="keyupp(this)" autocomplete="off" list="names">
+                <datalist id="names"></datalist>
                 <input type="submit" class="widebutton button_coloured" value="Add">
                 </form>
     </body>
