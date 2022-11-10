@@ -38,9 +38,9 @@ function getMessages() {
             }
         }
     };"/29f771a4-c121-4fd5-ab46-f7862f0d05fc/message/Jerry"
-    xmlhttp.open("GET", url.concat(access_token).concat("/message/").concat(other_user), true);
+    xmlhttp.open("GET", window.chatServer.concat("/").concat(window.chatCollectionID).concat("/message/").concat(other_user), true);
     // Add token, e. g., from Tom
-    xmlhttp.setRequestHeader('Authorization', 'Bearer '.concat(user_token));
+    xmlhttp.setRequestHeader('Authorization', 'Bearer '.concat(window.chatToken));
     xmlhttp.send();
 }
 
