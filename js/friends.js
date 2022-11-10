@@ -43,7 +43,7 @@ function keyup(){
         }
     }
 }
-
+*/
 function checkname(){
     let bool = data.includes(document.getElementById("username").value);
     if(!bool){
@@ -51,8 +51,9 @@ function checkname(){
         return false;
     }
 }
-*/
+
 function initNames(prefix){
+    getUsers();
     const datalist = document.getElementById("names");
     datalist.innerHTML='';
     for(let name of data){
