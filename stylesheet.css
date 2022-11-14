@@ -199,3 +199,11 @@ li.friendsddown{
     width: 95%;
   }
 }
+.redborder {
+  border-color: rgb(255, 0, 0);
+  border-width:2px;
+  
+}
+input:focus {
+  outline: none;
+}
