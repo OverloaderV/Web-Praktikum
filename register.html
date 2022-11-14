@@ -18,15 +18,15 @@
             <legend>Register</legend>
             <div class="userinput" >
                 <label for="Name" class="userinput">Username</label>
-                <input required type="text" name="Name" id="Name" placeholder="Username" onkeyup="test()">
+                <input required type="text" name="Name" id="Name" placeholder="Username" onkeyup="testLength('Name', 3)">
             </div>
             <div class="userinput">
                 <label for="Pass" class="userinput">Password</label>
-                <input type="password" name="Pass" id="Pass" placeholder="Password" onkeyup="test()">
+                <input type="password" name="Pass" id="Pass" placeholder="Password" onkeyup="testLength('Pass', 8)">
             </div>
             <div class="userinput">
                 <label for="cPass" class="userinput">Confirm Password</label>
-                <input type="password" name="cPass" id="cPass" placeholder="Confirm Password" onkeyup="test()">
+                <input type="password" name="cPass" id="cPass" placeholder="Confirm Password" onkeyup="testLength('cPass', 8)" onkeyup="confirm()">
             </div>
         </fieldset>
         <a href="login.html" class="isbutton">

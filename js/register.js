@@ -1,14 +1,26 @@
-function test() {
+function testLength(id, l) {
 
-    // let element = document.createElement("p");
-    
-    const element = document.getElementById('heading');
-    element.innerText = "test";
-    const nameinput = document.getElementById('Name');
-    var input = nameinput.value;
-    if (input.length < 3) {
-    nameinput.classList.add("redborder");
+    const inputElement = document.getElementById(id);
+    var input = inputElement.value;
+    if (input.length < l) {
+    inputElement.classList.add("redborder");
+    inputElement.classList.remove("greenborder");
     } else {
-        nameinput.classList.remove("redborder");
+        inputElement.classList.remove("redborder");
+        inputElement.classList.add("greenborder");
     }
+}
+
+function confirm() {
+
+    const password = document.getElementById('Pass').value;
+    const passwordRepeat = document.getElementById('cPass').value;
+
+    if(password === passwordRepeat) {
+
+        document.getElementById('cPass').classList.add("greenborder");
+    } else {
+        document.getElementById('cPass').classList.add("redborder");
+    }
+
 }

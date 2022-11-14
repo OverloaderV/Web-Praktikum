@@ -204,6 +204,11 @@ li.friendsddown{
   border-width:2px;
   
 }
+.greenborder {
+  border-color: rgb(12, 143, 0);
+  border-width:2px;
+  
+}
 input:focus {
   outline: none;
 }
