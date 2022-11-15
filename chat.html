@@ -8,7 +8,6 @@
 
 <body>
     <script src="js/initChat.js"></script>
-    <script src="js/chat.js"></script>
     <p>
     <h2>Chat with Tom</h2>
     </p>
@@ -21,10 +20,11 @@
     <fieldset class="chatbox" id="chatbox">
     </fieldset>
     <hr>
-    <form action="chat.html">
-        <input type="text" placeholder="New Message" name="msg" id="msg" class="wide">
+    <form id="send">
+        <input type="text" placeholder="New Message" name="msg" id="msg" class="wide" required>
         <input type="submit" value="Send" class="widebutton button_coloured">
     </form>
+    <script src="js/chat.js"></script>
 </body>
 
 </html>

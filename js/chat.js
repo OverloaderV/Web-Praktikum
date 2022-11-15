@@ -21,14 +21,16 @@ function getMessages() {
                     let content_text = document.createTextNode(data[i].from.concat(": ").concat(data[i].msg))
                     content.appendChild(content_text);
                     message.appendChild(content);
-                    
+
                     let received_date = new Date(data[i].time);
                     let time = document.createElement("span");
                     time.classList.add("ctime");
-                    let time_text = document.createTextNode(received_date.getHours() + ":" + received_date.getMinutes() + ":" + received_date.getSeconds() + " " + received_date.getDay() + "." + received_date.getMonth() + "." + received_date.getFullYear());
+                    let time_text = document.createTextNode(received_date.getHours() + ":" + received_date.getMinutes() + ":" +
+                      received_date.getSeconds() + " " + received_date.getDay() + "." + received_date.getMonth() + "." +
+                      received_date.getFullYear());
                     time.appendChild(time_text);
                     message.appendChild(time);
-                    
+
                     let br = document.createElement("br");
                     message.appendChild(br);
 
@@ -37,7 +39,7 @@ function getMessages() {
                 lastlength = data.length;
             }
         }
-    };"/29f771a4-c121-4fd5-ab46-f7862f0d05fc/message/Jerry"
+    };
     xmlhttp.open("GET", window.chatServer.concat("/").concat(window.chatCollectionID).concat("/message/").concat(other_user), true);
     // Add token, e. g., from Tom
     xmlhttp.setRequestHeader('Authorization', 'Bearer '.concat(window.chatToken));
@@ -46,3 +48,18 @@ function getMessages() {
 
 getMessages();
 window.setInterval(getMessages, 1000);
+
+function sendMessage(e) {
+    if (e.preventDefault) {
+        e.preventDefault();
+    }
+    
+    console.log(e);
+}
+
+var form = document.getElementById("send");
+if (form.attachEvent) {
+    form.attachEvent("submit", sendMessage);
+} else {
+    form.addEventListener("submit", sendMessage);
+}
