@@ -1,3 +1,4 @@
+
 function testLength(id, l) {
 
     const inputElement = document.getElementById(id);
@@ -44,3 +45,17 @@ function confirm() {
     }
 
 }
+
+function submitCheck() {
+
+    const name = document.getElementById('Name').className;
+    const password = document.getElementById('Pass').className;
+    const confirmPassword = document.getElementById('cPass').className;
+
+    if (name === "greenborder" && password === "greenborder" && confirmPassword === "greenborder") {
+
+    } else {
+    event.preventDefault();
+    }
+}
+
