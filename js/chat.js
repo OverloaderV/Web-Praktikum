@@ -26,8 +26,8 @@ function getMessages() {
                     let time = document.createElement("span");
                     time.classList.add("ctime");
                     let time_text = document.createTextNode(received_date.getHours() + ":" + received_date.getMinutes() + ":" +
-                      received_date.getSeconds() + " " + received_date.getDay() + "." + received_date.getMonth() + "." +
-                      received_date.getFullYear());
+                      received_date.getSeconds() + " " /*+ received_date.getDay() + "." + received_date.getMonth() + "." +
+                      received_date.getFullYear()*/);
                     time.appendChild(time_text);
                     message.appendChild(time);
 
@@ -54,7 +54,28 @@ function sendMessage(e) {
         e.preventDefault();
     }
     
-    console.log(e);
+    var msg = document.getElementById("msg").value;
+    console.log(msg);
+
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 204) {
+            console.log("done...");
+        }
+    };
+    xmlhttp.open("POST", url + "/" + chatCollectionID + "/message", true);
+    xmlhttp.setRequestHeader('Content-type', 'application/json');
+    // Add token, e. g., from Tom
+    xmlhttp.setRequestHeader('Authorization', 'Bearer ' + window.chatToken);
+    // Create request data with message and receiver
+    let data = {
+        message: msg,
+        to: other_user
+    };
+    let jsonString = JSON.stringify(data); // Serialize as JSON
+    xmlhttp.send(jsonString); // Send JSON-data to server
+    
+    document.getElementById("msg").value = "";
 }
 
 var form = document.getElementById("send");
