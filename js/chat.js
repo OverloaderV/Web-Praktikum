@@ -1,7 +1,4 @@
 // TODO auslagern
-let url = "https://online-lectures-cs.thi.de/chat/"
-let access_token = "29f771a4-c121-4fd5-ab46-f7862f0d05fc"
-let user_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiVG9tIiwiaWF0IjoxNjY3ODk5MTIwfQ.5LkCDmMjcCGEkC9aLWjut7IlF_OCqcSpK6OmX5gxwmU"
 let other_user = "Jerry"
 
 let lastlength = 0;
@@ -63,7 +60,7 @@ function sendMessage(e) {
             console.log("done...");
         }
     };
-    xmlhttp.open("POST", url + "/" + chatCollectionID + "/message", true);
+    xmlhttp.open("POST", window.chatServer + "/" + window.chatCollectionID + "/message", true);
     xmlhttp.setRequestHeader('Content-type', 'application/json');
     // Add token, e. g., from Tom
     xmlhttp.setRequestHeader('Authorization', 'Bearer ' + window.chatToken);
