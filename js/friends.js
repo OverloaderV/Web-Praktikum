@@ -1,4 +1,5 @@
 var data= 0;
+var added= false;
 function getUsers(){
 
     var xmlhttp = new XMLHttpRequest();
@@ -7,10 +8,7 @@ function getUsers(){
             console.log(xmlhttp.responseText)
             data = JSON.parse(xmlhttp.responseText);
             console.log(data);
-            let div = document.createElement("div");
-            div.id="ul"
-            var un = document.getElementById("username");
-            un.append(div);
+
         }
 
     };
@@ -22,28 +20,36 @@ xmlhttp.send();
 
 
 getUsers()
-/*
+
 function keyup(){
-    let input = document.getElementById("username").value;
-    document.getElementById("ul").innerText = '';
-    let p = document.createElement("p");
-    p.classList.add("friendsddown");
-    p.style.marginLeft="10px";
-    if(input != ''){
-        let j = 0;
-    for(let i = 0; i < data.length;i++){
-            if(data[i].startsWith(input)&&j<6){
-                p.innerText =data[i];
-                p.onclick = function(){document.getElementById("username").value = data[i];document.getElementById("ul").innerText = '';};
-                let ul = document.getElementById("ul");
-                ul.appendChild(p);
-                j++;
+    if (added){
+        getUsers()
+        let input = document.getElementById("username").value;
+        document.getElementById("ul").innerText = '';
+        let p = document.createElement("p");
+        p.classList.add("friendsddown");
+        p.style.marginLeft="10px";
+        if(input != ''){
+            let j = 0;
+        for(let i = 0; i < data.length;i++){
+                if(data[i].startsWith(input)&&j<6){
+                    p.innerText =data[i];
+                    p.onclick = function(){document.getElementById("username").value = data[i];document.getElementById("ul").innerText = '';};
+                    let ul = document.getElementById("ul");
+                    ul.appendChild(p);
+                    j++;
+                }    
             }
-        
         }
     }
+    else{
+        let div = document.createElement("div");
+        div.id="ul"
+        document.body.append(div);
+        added=true;
+    }
 }
-*/
+
 function checkname(){
     let bool = data.includes(document.getElementById("username").value);
     if(!bool){
