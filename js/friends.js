@@ -20,7 +20,7 @@ xmlhttp.send();
 
 
 getUsers()
-
+/*
 function keyup(){
     if (added){
         getUsers()
@@ -49,12 +49,12 @@ function keyup(){
         added=true;
     }
 }
-
-function checkname(){
+*/
+function checkname(event){
     let bool = data.includes(document.getElementById("username").value);
     if(!bool){
         alert("User " +document.getElementById("username").value+ " doesn't exist.")
-        return false;
+        event.preventDefault();
     }
 }
 

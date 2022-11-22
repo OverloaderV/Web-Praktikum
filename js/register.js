@@ -11,7 +11,7 @@ function testLength(id, l) {
         inputElement.classList.add("greenborder");
     }
 
-var link = 'https://online-lectures-cs.thi.de/chat/c372f16d-94f6-4870-b76d-9be68bcd82f6/user/' + input;
+var link = window.chatServer+'/'+window.chatCollectionID+'/user/'+input;
 
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
@@ -32,8 +32,6 @@ function confirm() {
     const password = document.getElementById('Pass').value;
     const passwordRepeat = document.getElementById('cPass').value;
 
-    const test = document.getElementById('heading');
-    test.innerText = "test";
 
     if(password === passwordRepeat) {
 
