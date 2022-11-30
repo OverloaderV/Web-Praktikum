@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Registration</title>
-    <link rel="stylesheet" href="stylesheet.css">
-    <script src="js/initChat.js"></script>
-    <script src="js/register.js"></script>
-</head>
 
 <body class="center">
-    <img src="images/user.png" width="100px">
+    <img src="../../../assets/images/user.png" width="100px">
     <p>
     <h2 id="heading">Register Yourself</h2>
-    </p>
     <form action="friends.html" id="register1" onsubmit="submitCheck()">
         <fieldset class="login">
             <legend>Register</legend>
@@ -29,11 +19,10 @@
                 <input type="password" name="cPass" id="cPass" placeholder="Confirm Password" onkeyup="confirm()">
             </div>
         </fieldset>
-        <a href="login.html" class="isbutton">
+        <a routerLink="/login" class="isbutton">
             <button type="button" class="button_grey">Cancel</button>
         </a>
         <input type="submit" value="Create Account" class="button_coloured">
     </form>
 </body>
 
-</html>
