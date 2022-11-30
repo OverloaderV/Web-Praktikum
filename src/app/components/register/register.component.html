@@ -10,18 +10,18 @@
                 <label for="Name" class="userinput">Username</label>
                 <input required type="text" name="Name" id="Name" placeholder="Username" [(ngModel)]="username" #un="ngModel" (keyup)="validateUsername()" autocomplete="off">
             </div>
-            <div [hidden]="(usernameOK && un.dirty) || un.pristine ">Username too short</div>
-            <div [hidden]="(!usernameExists || !usernameOK) || un.pristine"> Name already in use</div>
+            <div [hidden]="(usernameOK && un.dirty) || un.pristine " class="error">Username too short</div>
+            <div [hidden]="(!usernameExists || !usernameOK) || un.pristine" class="error"> Name already in use</div>
             <div class="userinput">
                 <label for="Pass" class="userinput">Password</label>
                 <input type="password" name="Pass" id="Pass" placeholder="Password" [(ngModel)]="password" #pw="ngModel" (keyup)="validatePassword()">
             </div>
-            <div [hidden]="passwordOK || pw.pristine">Password too short</div>
+            <div [hidden]="passwordOK || pw.pristine" class="error">Password too short</div>
             <div class="userinput">
                 <label for="cPass" class="userinput">Confirm Password</label>
                 <input type="password" name="cPass" id="cPass" placeholder="Confirm Password" [(ngModel)]="cpassword" #cpw="ngModel">
             </div>
-            <div [hidden]="(password == cpassword) || cpw.pristine"> Passwords are not identical</div>
+            <div [hidden]="(password == cpassword) || cpw.pristine" class="error"> Passwords are not identical</div>
         </fieldset>
         <a routerLink="/login" class="isbutton">
             <button type="button" class="button_grey">Cancel</button>

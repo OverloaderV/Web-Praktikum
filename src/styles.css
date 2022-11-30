@@ -213,3 +213,7 @@ li.friendsddown{
 input:focus {
   outline: none;
 }
+
+.error{
+  color: red;
+}
