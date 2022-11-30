@@ -8,15 +8,18 @@
             <legend>Register</legend>
             <div class="userinput" >
                 <label for="Name" class="userinput">Username</label>
-                <input required type="text" name="Name" id="Name" placeholder="Username" onkeyup="testLength('Name', 3)">
+                <input required type="text" name="Name" id="Name" placeholder="Username" [(ngModel)]="username" #un="ngModel" (keyup)="validateUsername()">
             </div>
+            <div [hidden]="(usernameOK && un.dirty) || un.pristine ">Username too short</div>
+            <div [hidden]="(usernameExists || !usernameOK) || un.pristine"> Name already in use</div>
             <div class="userinput">
                 <label for="Pass" class="userinput">Password</label>
-                <input type="password" name="Pass" id="Pass" placeholder="Password" onkeyup="testLength('Pass', 8)">
+                <input type="password" name="Pass" id="Pass" placeholder="Password" [(ngModel)]="password" #pw="ngModel" (keyup)="validatePassword()">
             </div>
+            <div [hidden]="passwordOK || pw.pristine">Password too short</div>
             <div class="userinput">
                 <label for="cPass" class="userinput">Confirm Password</label>
-                <input type="password" name="cPass" id="cPass" placeholder="Confirm Password" onkeyup="confirm()">
+                <input type="password" name="cPass" id="cPass" placeholder="Confirm Password" [(ngModel)]="cpassword">
             </div>
         </fieldset>
         <a routerLink="/login" class="isbutton">
