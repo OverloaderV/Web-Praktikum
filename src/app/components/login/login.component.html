@@ -1,22 +1,23 @@
     <body class="center">
         <img src="../../../assets/images/chat.png" width="80">
             <h2>Please sign in</h2>
-        <form action="friends.html">
+            <div [hidden]="success">Auth failed</div>
+        <form role="form" #loginform="ngForm">
             <fieldset class="login">
                 <legend>Login</legend>
                 <div class="userinput">
                     <label for="username" class="userinput">Username: </label>
-                    <input id="username" type="text" name="username" placeholder="Username">
+                    <input id="username" type="text" name="username" placeholder="Username" [(ngModel)]="username">
                 </div>
                 <div class="userinput">
                     <label for="password" class="userinput">Password: </label>
-                    <input id="password" type="password" name="password" placeholder="Password">
+                    <input id="password" type="password" name="password" placeholder="Password" [(ngModel)]="password">
                 </div>
             </fieldset>
         
                 <a routerLink="/register" class="isbutton">
                     <button type="button" class="button_grey">Register</button>
                 </a>
-                <input type="submit" class="button_coloured" value="Login">
+                <input type="submit" class="button_coloured" value="Login" (click)="login()">
         </form>
     </body>
