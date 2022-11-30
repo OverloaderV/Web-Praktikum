@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
     selector: 'app-register',
@@ -12,10 +14,10 @@ export class RegisterComponent implements OnInit {
     public password:string ="";
     public cpassword:string ="";
     public usernameOK:boolean=false;
-    public usernameExists:boolean=false;
+    public usernameExists:boolean=true;
     public passwordOK:boolean=false;
 
-    public constructor() { 
+    public constructor(private router:Router, private backendService:BackendService) { 
     }
 
     public ngOnInit(): void {
@@ -27,6 +29,14 @@ export class RegisterComponent implements OnInit {
         }else{
             this.usernameOK = false;
         }
+        this.backendService.userExists(this.username)
+        .subscribe((ok:boolean) =>{
+            if(ok){
+                this.usernameExists=true;
+            }else{
+                this.usernameExists=false;
+            }
+        })
     }
 
     public validatePassword():void{
@@ -35,9 +45,22 @@ export class RegisterComponent implements OnInit {
         }else{
             this.passwordOK = false;
         }
+        
     }
-    public keyUp():void{
+    public register():void{
+        this.backendService.register(this.username,this.password)
+        .subscribe((ok:boolean) =>{
+            if(ok){
+                console.log("Registration successful");
+                this.router.navigate(["/friends"]);
+            }else{
+                console.log("Something went wrong.")
+            }
+        })
+    }
 
+    public test():void{
+        console.log("test");
     }
 
 }
