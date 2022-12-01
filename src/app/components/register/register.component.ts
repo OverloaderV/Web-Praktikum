@@ -59,8 +59,4 @@ export class RegisterComponent implements OnInit {
         })
     }
 
-    public test(): void{
-        console.log("test");
-    }
-
 }
