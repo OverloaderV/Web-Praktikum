@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
     public ngOnInit(): void {
     }
 
-    public validateUsername():void{
+    public validateUsername(): void{
         if (this.username.length >2){
             this.usernameOK = true;
         }else{
@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
         })
     }
 
-    public validatePassword():void{
+    public validatePassword(): void{
         if(this.password.length > 7){
             this.passwordOK = true;
         }else{
@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
         }
         
     }
-    public register():void{
+    public register(): void{
         this.backendService.register(this.username,this.password)
         .subscribe((ok:boolean) =>{
             if(ok){
@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
         })
     }
 
-    public test():void{
+    public test(): void{
         console.log("test");
     }
 
