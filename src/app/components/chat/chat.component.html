@@ -1,18 +1,17 @@
+<h2>Chat with Tom</h2>
+<p>
+    <a routerLink="/friends">&lt; Back</a> |
+    <a routerLink="/profile">Profile</a> |
+    <a href="friends.html" class="removefriend">Remove Friend</a>
+</p>
+<hr>
+<fieldset class="chatbox" id="chatbox">
+    <div #messagesDiv>
 
-    <h2>Chat with Tom</h2>
-    <p>
-        <a routerLink="/friends">&lt; Back</a> |
-        <a routerLink="/profile">Profile</a> |
-        <a href="friends.html" class="removefriend">Remove Friend</a>
-    </p>
-    <hr>
-    <fieldset class="chatbox" id="chatbox">
-        <div #messagesDiv>
-            
-        </div>
-    </fieldset>
-    <hr>
-    <form id="send">
-        <input type="text" placeholder="New Message" name="msg" id="msg" autocomplete="off" class="wide" required>
-        <input type="submit" value="Send" class="widebutton button_coloured">
-    </form>
+    </div>
+</fieldset>
+<hr>
+<form id="send">
+    <input type="text" placeholder="New Message" name="msg" id="msg" autocomplete="off" class="wide" required>
+    <input type="submit" value="Send" class="widebutton button_coloured">
+</form>

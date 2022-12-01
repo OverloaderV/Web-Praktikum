@@ -1,46 +1,45 @@
-
-    <h2>Profile Settings</h2>
-    <form action="settings.html">
-        <fieldset>
-            <legend>Base Data</legend>
-            <div class="userinput">
-                <label for="fname" class="userprofile">First Name </label>
-                <input type="text" name="fname" id="fname" placeholder="Your name">
-            </div>
-            <div class="userinput">
-                <label for="lname" class="userprofile">Last Name </label>
-                <input type="text" name="lname" id="lname" placeholder="Your surname">
-            </div>
-            <div class="userinput">
+<h2>Profile Settings</h2>
+<form action="settings.html">
+    <fieldset>
+        <legend>Base Data</legend>
+        <div class="userinput">
+            <label for="fname" class="userprofile">First Name </label>
+            <input type="text" name="fname" id="fname" placeholder="Your name">
+        </div>
+        <div class="userinput">
+            <label for="lname" class="userprofile">Last Name </label>
+            <input type="text" name="lname" id="lname" placeholder="Your surname">
+        </div>
+        <div class="userinput">
             <label for="drink" class="userprofile">Coffee or Tea?</label>
             <select name="drink" id="drink" class="select">
                 <option value="neither">Neither nor</option>
                 <option value="coffee">Coffee</option>
                 <option value="tea">Tea</option>
             </select>
-            </div>
-        </fieldset><br>
+        </div>
+    </fieldset><br>
 
-        <fieldset>
-            <legend>Tell something about you</legend>
-            <textarea name="aboutme" placeholder="Leave a comment here" class="userprofile"></textarea>
-        </fieldset><br>
+    <fieldset>
+        <legend>Tell something about you</legend>
+        <textarea name="aboutme" placeholder="Leave a comment here" class="userprofile"></textarea>
+    </fieldset><br>
 
-        <fieldset>
-            <legend>Preferred Chat Layout</legend>
-            <div class="userinput">
-                <input type="radio" name="layout" id="oneline" value="oneline"><label for="oneline">Username and Message in
-                    one line</label>
-            </div>
-            <div class="userinput">
-                <input type="radio" name="layout" id="sepline" value="sepline"><label for="sepline">Username and Message in
-                    seperate lines</label>
-            </div>
-        </fieldset>
-        <div class="center">
+    <fieldset>
+        <legend>Preferred Chat Layout</legend>
+        <div class="userinput">
+            <input type="radio" name="layout" id="oneline" value="oneline"><label for="oneline">Username and Message in
+                one line</label>
+        </div>
+        <div class="userinput">
+            <input type="radio" name="layout" id="sepline" value="sepline"><label for="sepline">Username and Message in
+                seperate lines</label>
+        </div>
+    </fieldset>
+    <div class="center">
         <a routerLink="/friends" class="isbutton">
             <button type="button" class="button_grey">Cancel</button>
         </a>
         <input type="submit" value="Submit" class="button_coloured">
-        </div>
-    </form>
+    </div>
+</form>
