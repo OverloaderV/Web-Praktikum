@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     public ngOnInit(): void {
     }
 
-    public login():void{
+    public login(): void{
         this.backendService.login(this.username,this.password)
         .subscribe((ok) =>{
             if(ok){

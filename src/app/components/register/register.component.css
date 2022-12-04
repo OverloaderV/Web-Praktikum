@@ -1,0 +1,5 @@
+.button_coloured:disabled{
+    color: gray;
+    background-color: lightgray;
+    cursor: default;
+}
