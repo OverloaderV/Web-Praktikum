@@ -3,6 +3,8 @@ import { AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ContextService } from 'src/app/services/context.service';
 import { BackendService } from 'src/app/services/backend.service';
+import { IntervalService } from 'src/app/services/interval.service';
+import { Message } from 'src/app/models/Message';
 
 @Component({
   selector: 'app-chat',
@@ -14,10 +16,13 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     // DIV für Nachrichten (s. Template) als Kind-Element für Aufrufe (s. scrollToBottom()) nutzen
     @ViewChild('messagesDiv') private myScrollContainer: ElementRef;
     public name:string;
+    public list:Message[] =[];
+    public input:string ="";
 
-     public constructor(private context:ContextService,private router:Router,private backEnd:BackendService) { 
+     public constructor(private context:ContextService,private router:Router,private backEnd:BackendService, private interval:IntervalService) { 
         this.myScrollContainer = new ElementRef(null);
         this.name = context.currentChatUsername;
+        interval.setInterval("chat.component",()=>{this.getChats})
 
     }   
 
@@ -53,4 +58,20 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
     }
 
+    private getChats(){
+        this.backEnd.listMessages(this.name)
+        .subscribe((result:Array<Message>) =>{
+            this.list = result;
+        });
+    }
+
+    public send():void{
+        this.backEnd.sendMessage(this.name,this.input)
+        .subscribe((ok:boolean) =>{
+            if(ok){console.log("msg sent")}
+            else{console.log("msg not sent")}
+
+        }
+        )
+    }
 }

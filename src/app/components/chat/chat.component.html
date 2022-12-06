@@ -7,11 +7,13 @@
 <hr>
 <fieldset class="chatbox" id="chatbox">
     <div #messagesDiv>
-
+        <ul >
+            <li *ngFor="let el of list">{{el.msg}}</li>
+        </ul>
     </div>
 </fieldset>
 <hr>
 <form id="send">
-    <input type="text" placeholder="New Message" name="msg" id="msg" autocomplete="off" class="wide" required>
-    <input type="submit" value="Send" class="widebutton button_coloured">
+    <input type="text" placeholder="New Message" name="msg" id="msg" autocomplete="off" class="wide" [(ngModel)]="input" required>
+    <input type="submit" value="Send" class="widebutton button_coloured" (click)="send()">
 </form>
