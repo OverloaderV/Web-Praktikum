@@ -62,13 +62,13 @@ export class FriendsComponent implements OnInit {
             this.backendService.userExists(this.addInput)
             .subscribe((ok:boolean) => {
                 
-                if(ok) {console.log("user exists")
+                if(ok) {
                 
                     this.backendService.friendRequest(this.addInput)
                     .subscribe((b:boolean) => {
         
-                        if(b) {console.log("user added succesfully")}
-                        else {console.log("user cannot be added")}
+                        if(b) {console.log("friend reqeust send")}
+                        else {console.log("friend request cannot be send")}
         
                     }) 
             
@@ -99,7 +99,8 @@ export class FriendsComponent implements OnInit {
         }
     
 
-    public refresh():void {
+    private refresh() {
+        console.log("Interval");
         this.backendService.loadFriends()
               .subscribe((friend:Array<Friend>) => {
                 this.friend = friend;
@@ -113,7 +114,6 @@ export class FriendsComponent implements OnInit {
                for(let i = 0; i < this.friend.length; i++) {
                 this.friend[i].unreadMessages = this.messages.get(this.friend[i].username) as number;
                }
-
     }
 }
 
