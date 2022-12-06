@@ -15,6 +15,8 @@ export class FriendsComponent implements OnInit {
     public messages!: Map<string, number>
     //public currentUser:User;
     public currentUser = new User();
+    public user: Array<string> = [];
+    public addInput:string = "";
 
 
     public constructor(private router:Router, private backendService:BackendService) {
@@ -46,7 +48,29 @@ export class FriendsComponent implements OnInit {
 
             }
 
+        
+
+        public check(): void {
+
+            this.backendService.listUsers()
+            .subscribe((temp:Array<string>) => {
+                for(let i in temp) {
+                    if(this.addInput === '' || i.startsWith(this.addInput)){
+                        this.user.push(i);
+                    }
+                }
+            })
+
+
+
+
         }
+
+        public add(): void {
+            
+        }
+
+    }
 
 
     //loadUser(this.context.currentChatUsername)

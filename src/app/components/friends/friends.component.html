@@ -9,28 +9,17 @@
             <hr>
             <fieldset class="chatbox">
                 <ul>
-                    <li>
-                        <a name="tom" href="chat.html">
-                            Tom
-                        </a>
-                        <span class="urmsg">3</span>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            Marvin
-                        </a>
-                        <span class="urmsg">1</span>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            Tick
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            Trick
-                        </a>
-                    </li>
+                    <div *ngFor = "let fr of friend">
+                        <div *ngIf = "fr.status == 'accepted'">
+                        <li> 
+                            <a href="chat.html"> 
+                                {{fr.username}}
+                            </a>
+                        </li>
+
+
+                        </div>
+                    </div>
 
                 </ul>
             </fieldset>
@@ -38,15 +27,31 @@
 
                 <h2>New Requests</h2>
                 <ol>
-                    <li>
-                        <a href="friends.html">
-                            Friend requests from <span>Track</span>
-                        </a>
-                    </li>
+                    <div *ngFor = "let fr of friend">
+                        <div *ngIf = "fr.status == 'requested'">
+                        <li> 
+                            <div>
+                                Friend request from {{fr.username}}
+                            </div>
+                            <button> Accept</button>
+                            <button> Decline</button>
+                        </li>
+
+
+                        </div>
+                    </div>
                 </ol>
                 <hr>
-                <form onsubmit="return checkname()">
-                <input id="username" type="text" name="username" placeholder="Add Friend to List" class="wide" onkeyup="keyupp(this)" autocomplete="off" list="names">
-                <datalist id="names"></datalist>
-                <input type="submit" class="widebutton button_coloured" value="Add">
+                <form>
+                <input id="username" type="text" name="username" placeholder="Add Friend to List" class="wide" (keyup)="check()" autocomplete="off" list="names" 
+                [(ngModel)]="addInput">
+                <datalist id="names">
+
+                    <div *ngFor="let us of user">
+                        <option> {{user}}</option>
+
+                    </div>
+
+                </datalist>
+                <input type="submit" class="widebutton button_coloured" value="Add" (click)="add()">
                 </form>
