@@ -4,7 +4,8 @@ import { Friend } from 'src/app/models/Friend';
 import { User } from 'src/app/models/User';
 import { BackendService } from 'src/app/services/backend.service';
 import { ContextService } from 'src/app/services/context.service';
-
+import { IntervalService } from 'src/app/services/interval.service';
+ 
 @Component({
     selector: 'app-friends',
     templateUrl: './friends.component.html',
@@ -21,8 +22,9 @@ export class FriendsComponent implements OnInit {
     public curUser:String ="";
 
 
-    public constructor(private router:Router, private backendService:BackendService, private context:ContextService) {
+    public constructor(private router:Router, private backendService:BackendService, private context:ContextService, private intervalService:IntervalService) {
         this.curUser= context.loggedInUsername;
+        intervalService.setInterval("friends.component", ()=> {this.refresh});
     }
 
     public ngOnInit(): void {
@@ -95,8 +97,25 @@ export class FriendsComponent implements OnInit {
             })
             this.router.navigate(["/friends"]);
         }
-    }
+    
 
+    public refresh():void {
+        this.backendService.loadFriends()
+              .subscribe((friend:Array<Friend>) => {
+                this.friend = friend;
+              })
+              this.backendService.unreadMessageCounts()
+              .subscribe((messages:Map<string, number>) => {
+                this.messages = messages;
+              })
+              //const friends = this.currentUser.friends;
+
+               for(let i = 0; i < this.friend.length; i++) {
+                this.friend[i].unreadMessages = this.messages.get(this.friend[i].username) as number;
+               }
+
+    }
+}
 
     //loadUser(this.context.currentChatUsername)
     //friend.unreadMessages = map.get(friend.username)
