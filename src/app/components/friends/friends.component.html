@@ -1,5 +1,6 @@
 
-        <h2>Friends</h2>
+<h2>Logged in as {{curUser}}</h2>
+<h2>Friends</h2>
         <a routerLink="/logout">
             &ltLogout
         </a> | 
@@ -12,7 +13,7 @@
                     <div *ngFor = "let fr of friend">
                         <div *ngIf = "fr.status == 'accepted'">
                         <li> 
-                            <a href="chat.html"> 
+                            <a (click)="chat(fr.username)"> 
                                 {{fr.username}}
                             </a>
                         </li>

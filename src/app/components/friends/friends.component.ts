@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Friend } from 'src/app/models/Friend';
 import { User } from 'src/app/models/User';
 import { BackendService } from 'src/app/services/backend.service';
+import { ContextService } from 'src/app/services/context.service';
 
 @Component({
     selector: 'app-friends',
@@ -17,10 +18,11 @@ export class FriendsComponent implements OnInit {
     public currentUser = new User();
     public user: Array<string> = [];
     public addInput:string = "";
+    public curUser:String ="";
 
 
-    public constructor(private router:Router, private backendService:BackendService) {
-        
+    public constructor(private router:Router, private backendService:BackendService, private context:ContextService) {
+        this.curUser= context.loggedInUsername;
     }
 
     public ngOnInit(): void {
@@ -47,6 +49,11 @@ export class FriendsComponent implements OnInit {
                }
 
             }
+
+        public chat(str:string){
+            this.context.loggedInUsername = str;
+            this.router.navigate(["/chat"]);
+        }
 
         public add(): void {
             let test;
