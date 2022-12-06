@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { ContextService } from 'src/app/services/context.service';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-chat',
@@ -10,10 +13,13 @@ import { AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 export class ChatComponent implements OnInit, AfterViewChecked {
     // DIV für Nachrichten (s. Template) als Kind-Element für Aufrufe (s. scrollToBottom()) nutzen
     @ViewChild('messagesDiv') private myScrollContainer: ElementRef;
+    public name:string;
 
-     public constructor() { 
+     public constructor(private context:ContextService,private router:Router,private backEnd:BackendService) { 
         this.myScrollContainer = new ElementRef(null);
-    }
+        this.name = context.currentChatUsername;
+
+    }   
 
     public ngAfterViewChecked() {        
         this.scrollToBottom();        
@@ -32,6 +38,17 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
     public ngOnInit(): void {
         this.scrollToBottom();
+
+    }
+
+    public remove(str:string){
+        this.backEnd.removeFriend(str)
+        .subscribe((ok:boolean) =>{
+            if(ok){
+                this.router.navigate(["/friends"])
+            }
+        }
+        );
 
     }
 

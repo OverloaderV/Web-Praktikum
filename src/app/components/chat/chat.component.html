@@ -1,8 +1,8 @@
-<h2>Chat with Tom</h2>
+<h2>Chat with {{name}}</h2>
 <p>
     <a routerLink="/friends">&lt; Back</a> |
     <a routerLink="/profile">Profile</a> |
-    <a href="friends.html" class="removefriend">Remove Friend</a>
+    <a (click)="remove(name)" class="removefriend">Remove Friend</a>
 </p>
 <hr>
 <fieldset class="chatbox" id="chatbox">
