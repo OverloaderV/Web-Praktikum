@@ -24,7 +24,7 @@ export class FriendsComponent implements OnInit {
 
     public constructor(private router:Router, private backendService:BackendService, private context:ContextService, private intervalService:IntervalService) {
         this.curUser= context.loggedInUsername;
-        intervalService.setInterval("friends.component", ()=> {this.refresh});
+        intervalService.setInterval("friends.component", ()=> {this.refresh()});
     }
 
     public ngOnInit(): void {
@@ -32,22 +32,21 @@ export class FriendsComponent implements OnInit {
         this.backendService.loadCurrentUser()
         .subscribe((user:User| null) =>{
                 this.currentUser = user as User;
-              })
+            })
 
-             this.backendService.loadFriends()
-              .subscribe((friend:Array<Friend>) => {
+        this.backendService.loadFriends()
+            .subscribe((friend:Array<Friend>) => {
                 this.friend = friend;
-              })
+            })
 
-
-              this.backendService.unreadMessageCounts()
-              .subscribe((messages:Map<string, number>) => {
+        this.backendService.unreadMessageCounts()
+            .subscribe((messages:Map<string, number>) => {
                 this.messages = messages;
-              })
+             })
               //const friends = this.currentUser.friends;
 
-               for(let i = 0; i < this.friend.length; i++) {
-                this.friend[i].unreadMessages = this.messages.get(this.friend[i].username) as number;
+        for(let i = 0; i < this.friend.length; i++) {
+            this.friend[i].unreadMessages = this.messages.get(this.friend[i].username) as number;
                }
 
             }
@@ -76,19 +75,22 @@ export class FriendsComponent implements OnInit {
             })
             
         }
-        public accept(username:string):void {
+        public accept(fr:Friend):void {
 
+            let username = fr.username;
+            let acceptedUser;
             this.backendService.acceptFriendRequest(username)
             .subscribe((ok:boolean) => {
-
                 if(ok) {console.log("friend accepted")} 
                 else {console.log("friend cannot be accepted")}
             })
+            fr.status = "accepted";
             this.router.navigate(["/friends"]);
         }
 
-        public decline(username:string):void {
+        public decline(fr:Friend):void {
 
+            let username = fr.username;
             this.backendService.dismissFriendRequest(username)
             .subscribe((ok:boolean) => {
 
@@ -100,7 +102,7 @@ export class FriendsComponent implements OnInit {
     
 
     private refresh() {
-        console.log("Interval");
+        
         this.backendService.loadFriends()
               .subscribe((friend:Array<Friend>) => {
                 this.friend = friend;
