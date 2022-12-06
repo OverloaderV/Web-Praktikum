@@ -24,7 +24,7 @@ export class FriendsComponent implements OnInit {
 
     public constructor(private router:Router, private backendService:BackendService, private context:ContextService, private intervalService:IntervalService) {
         this.curUser= context.loggedInUsername;
-        intervalService.setInterval("friends.component", ()=> {this.refresh()});
+        
     }
 
     public ngOnInit(): void {
@@ -48,6 +48,8 @@ export class FriendsComponent implements OnInit {
         for(let i = 0; i < this.friend.length; i++) {
             this.friend[i].unreadMessages = this.messages.get(this.friend[i].username) as number;
                }
+
+               this.intervalService.setInterval("friends.component", ()=> {this.refresh()});
 
             }
 
@@ -73,6 +75,8 @@ export class FriendsComponent implements OnInit {
             
             } else {console.log("user doesn't exist")}
             })
+
+            this.addInput = "";
             
         }
         public accept(fr:Friend):void {
