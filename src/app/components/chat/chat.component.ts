@@ -22,7 +22,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
      public constructor(private context:ContextService,private router:Router,private backEnd:BackendService, private interval:IntervalService) { 
         this.myScrollContainer = new ElementRef(null);
         this.name = context.currentChatUsername;
-        interval.setInterval("chat.component",()=>{this.getChats})
+        interval.setInterval("chat.component",()=>{this.getChats()})
 
     }   
 
@@ -59,7 +59,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     }
 
     private getChats(){
-        this.backEnd.listMessages(this.name)
+        this.backEnd.listMessages(this.context.currentChatUsername)
         .subscribe((result:Array<Message>) =>{
             this.list = result;
         });

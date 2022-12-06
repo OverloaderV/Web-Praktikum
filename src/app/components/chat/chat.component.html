@@ -7,8 +7,11 @@
 <hr>
 <fieldset class="chatbox" id="chatbox">
     <div #messagesDiv>
-        <ul >
-            <li *ngFor="let el of list">{{el.msg}}</li>
+        <ul *ngFor="let el of list">
+            <li >
+                <p>{{el.from}} : {{el.msg}}
+                <span class="ctime">{{el.time | date}}</span>
+            </li>
         </ul>
     </div>
 </fieldset>
