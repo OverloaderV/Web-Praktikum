@@ -59,19 +59,20 @@ export class FriendsComponent implements OnInit {
             let test;
             this.backendService.userExists(this.addInput)
             .subscribe((ok:boolean) => {
-                test = ok;
-                if(ok) {console.log("user exists")} else {console.log("user doesn't exist")}
+                
+                if(ok) {console.log("user exists")
+                
+                    this.backendService.friendRequest(this.addInput)
+                    .subscribe((b:boolean) => {
+        
+                        if(b) {console.log("user added succesfully")}
+                        else {console.log("user cannot be added")}
+        
+                    }) 
+            
+            } else {console.log("user doesn't exist")}
             })
             
-            if(test) {
-            this.backendService.friendRequest(this.addInput)
-            .subscribe((b:boolean) => {
-
-                if(b) {console.log("user added succesfully")}
-                else {console.log("user cannot be added")}
-
-            }) 
-        }
         }
         public accept(username:string):void {
 
