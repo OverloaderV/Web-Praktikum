@@ -59,10 +59,8 @@ export class FriendsComponent implements OnInit {
             let test;
             this.backendService.userExists(this.addInput)
             .subscribe((ok:boolean) => {
-
                 test = ok;
-                if(ok) {} else {console.log("user doesn't exist")}
-
+                if(ok) {console.log("user exists")} else {console.log("user doesn't exist")}
             })
             
             if(test) {
@@ -74,6 +72,27 @@ export class FriendsComponent implements OnInit {
 
             }) 
         }
+        }
+        public accept(username:string):void {
+
+            this.backendService.acceptFriendRequest(username)
+            .subscribe((ok:boolean) => {
+
+                if(ok) {console.log("friend accepted")} 
+                else {console.log("friend cannot be accepted")}
+            })
+            this.router.navigate(["/friends"]);
+        }
+
+        public decline(username:string):void {
+
+            this.backendService.dismissFriendRequest(username)
+            .subscribe((ok:boolean) => {
+
+                if(ok) {console.log("friend request dismissed")} 
+                else {console.log("friend request cannot be dismissed")}
+            })
+            this.router.navigate(["/friends"]);
         }
     }
 

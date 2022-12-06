@@ -34,8 +34,8 @@
                             <div>
                                 Friend request from {{fr.username}}
                             </div>
-                            <button> Accept</button>
-                            <button> Decline</button>
+                            <button (click)="accept(fr.username)"> Accept</button>
+                            <button (click)="decline(fr.username)"> Decline</button>
                         </li>
 
 
