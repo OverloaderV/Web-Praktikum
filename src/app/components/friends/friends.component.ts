@@ -51,7 +51,7 @@ export class FriendsComponent implements OnInit {
             }
 
         public chat(str:string){
-            this.context.loggedInUsername = str;
+            this.context.currentChatUsername = str.toString();
             this.router.navigate(["/chat"]);
         }
 
