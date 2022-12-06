@@ -43,7 +43,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
     public ngOnInit(): void {
         this.scrollToBottom();
-        this.interval.clearIntervals
+        this.interval.clearIntervals();
         if(this.context.loggedInUsername==""){
             this.router.navigate(["/login"]);
         }else{

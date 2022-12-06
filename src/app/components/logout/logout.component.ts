@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IntervalService } from 'src/app/services/interval.service';
 
 @Component({
   selector: 'app-logout',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private interv:IntervalService) { }
 
   ngOnInit(): void {
+    this.interv.clearIntervals();
   }
 
 }

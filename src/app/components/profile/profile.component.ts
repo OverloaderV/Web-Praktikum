@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ContextService } from 'src/app/services/context.service';
 
 
 @Component({
@@ -8,10 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-    public constructor() { 
+    public constructor(private context:ContextService,private router:Router) { 
     }
 
     public ngOnInit(): void {
+        if(this.context.loggedInUsername==""){
+            this.router.navigate(["/login"]);
+        }
     }
 
 }

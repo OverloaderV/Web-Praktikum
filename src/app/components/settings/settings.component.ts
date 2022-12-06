@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/User';
 import { Profile } from 'src/app/models/Profile';
 import { BackendService } from 'src/app/services/backend.service';
+import { ContextService } from 'src/app/services/context.service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -20,7 +23,7 @@ export class SettingsComponent implements OnInit {
     private oneline: HTMLInputElement | null;
     private sepline: HTMLInputElement | null;
 
-    public constructor(private backend: BackendService) {
+    public constructor(private backend: BackendService, private context: ContextService, private router: Router) {
         this.fname = document.getElementById("fname");
         this.lname = document.getElementById("lname");
         this.drink = document.getElementById("drink") as HTMLSelectElement;
@@ -30,6 +33,10 @@ export class SettingsComponent implements OnInit {
     }
 
     public ngOnInit(): void {
+        if(this.context.loggedInUsername==""){
+            this.router.navigate(["/login"]);
+        }
+
         this.backend.loadCurrentUser()
         .subscribe((user: any) => {
             if (user == null) {

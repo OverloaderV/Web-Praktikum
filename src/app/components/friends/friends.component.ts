@@ -28,7 +28,10 @@ export class FriendsComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-
+        if(this.context.loggedInUsername==""){
+            this.router.navigate(["/login"]);
+        }
+        this.intervalService.clearIntervals();
         this.backendService.loadCurrentUser()
         .subscribe((user:User| null) =>{
                 this.currentUser = user as User;
