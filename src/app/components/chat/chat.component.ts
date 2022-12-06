@@ -78,5 +78,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
         }
         )
+        this.input="";
     }
 }
