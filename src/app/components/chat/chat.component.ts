@@ -22,7 +22,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
      public constructor(private context:ContextService,private router:Router,private backEnd:BackendService, private interval:IntervalService) { 
         this.myScrollContainer = new ElementRef(null);
         this.name = context.currentChatUsername;
-        interval.setInterval("chat.component",()=>{this.getChats()})
+ 
 
     }   
 
@@ -43,7 +43,12 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
     public ngOnInit(): void {
         this.scrollToBottom();
-
+        this.interval.clearIntervals
+        if(this.context.loggedInUsername==""){
+            this.router.navigate(["/login"]);
+        }else{
+        this.interval.setInterval("chat.component",()=>{this.getChats()})
+        }
     }
 
     public remove(str:string){
