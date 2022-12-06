@@ -42,13 +42,14 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     }
 
     public remove(str:string){
-        this.backEnd.removeFriend(str)
-        .subscribe((ok:boolean) =>{
-            if(ok){
-                this.router.navigate(["/friends"])
+        let bool:boolean = confirm("Do you really want to remove "+str+" as a friend?")
+            this.backEnd.removeFriend(str)
+            .subscribe((ok:boolean) =>{
+                if(ok){
+                    this.router.navigate(["/friends"])
+                }
             }
-        }
-        );
+            );
 
     }
 
