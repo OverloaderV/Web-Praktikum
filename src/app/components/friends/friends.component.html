@@ -14,8 +14,9 @@
                         <div *ngIf = "fr.status == 'accepted'">
                         <li> 
                             <a (click)="chat(fr.username)"> 
-                                {{fr.username}}
+                                {{fr.username}} {{fr.unreadMessages}}
                             </a>
+                            
                         </li>
 
                         </div>

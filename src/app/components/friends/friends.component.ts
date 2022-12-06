@@ -119,7 +119,6 @@ export class FriendsComponent implements OnInit {
                 this.messages = messages;
               })
               //const friends = this.currentUser.friends;
-
                for(let i = 0; i < this.friend.length; i++) {
                 this.friend[i].unreadMessages = this.messages.get(this.friend[i].username) as number;
                }
@@ -127,4 +126,3 @@ export class FriendsComponent implements OnInit {
 }
 
     //loadUser(this.context.currentChatUsername)
-    //friend.unreadMessages = map.get(friend.username)
