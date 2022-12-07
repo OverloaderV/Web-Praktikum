@@ -1,18 +1,31 @@
 <h2>Chat with {{name}}</h2>
 <p>
-    <a routerLink="/friends">&lt; Back</a> |
+    <a routerLink="/friends">< Back</a> |
     <a routerLink="/profile">Profile</a> |
     <a (click)="remove(name)" class="removefriend">Remove Friend</a>
 </p>
 <hr>
 <fieldset class="chatbox" id="chatbox">
-    <div #messagesDiv>
-        <ul *ngFor="let el of list">
-            <li >
-                <p>{{el.from}} : {{el.msg}}
-                <span class="ctime">{{el.time | date}}</span>
-            </li>
-        </ul>
+    <div class="message" #messagesDiv>
+        <div [ngSwitch]="layout">
+            <div *ngSwitchCase="'sepline'">
+                <ul *ngFor="let el of list">
+                    <li>
+                        <p>{{el.from}}:<br>
+                        <p class="msg">{{el.msg}}
+                        <span class="ctime">{{el.time | date}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div *ngSwitchDefault>
+                <ul *ngFor="let el of list">
+                    <li>
+                        <p>{{el.from}} : {{el.msg}}
+                        <span class="ctime">{{el.time | date}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </fieldset>
 <hr>

@@ -5,6 +5,8 @@ import { ContextService } from 'src/app/services/context.service';
 import { BackendService } from 'src/app/services/backend.service';
 import { IntervalService } from 'src/app/services/interval.service';
 import { Message } from 'src/app/models/Message';
+import { Profile } from 'src/app/models/Profile';
+import { NONE_TYPE } from '@angular/compiler';
 
 @Component({
   selector: 'app-chat',
@@ -18,6 +20,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     public name:string;
     public list:Message[] =[];
     public input:string ="";
+    public profile:Profile | null =null;
+    public layout:String="";
+
 
      public constructor(private context:ContextService,private router:Router,private backEnd:BackendService, private interval:IntervalService) { 
         this.myScrollContainer = new ElementRef(null);
@@ -27,7 +32,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     }   
 
     public ngAfterViewChecked() {        
-        this.scrollToBottom();        
+        this.scrollToBottom(); 
+      
     } 
 
     /**
@@ -49,6 +55,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         }else{
         this.interval.setInterval("chat.component",()=>{this.getChats()})
         }
+        this.getSettings();
     }
 
     public remove(str:string){
@@ -79,5 +86,25 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         }
         )
         this.input="";
+    }
+
+    public getSettings():void{
+        this.backEnd.loadUser(this.context.loggedInUsername)
+        .subscribe((user: any) => {         
+            if (user == null) {
+                console.log("Fehler");
+            } else {
+                this.profile = new Profile(
+                    user.firstName ? user.firstName : '', 
+                    user.lastName ? user.lastName : '',
+                    user.coffeeOrTea ? user.coffeeOrTea : 'neither',
+                    user.description ? user.description : '',
+                    user.layout ? user.layout : 'oneline'
+                );
+                
+            }
+            this.layout=user.layout;
+            
+        });
     }
 }

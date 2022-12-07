@@ -1,0 +1,10 @@
+p.msg{
+    margin-left: 20px;
+}
+div.message{
+    overflow: scroll;
+    max-height: 350px;
+}
+p.chat{
+    max-width: 80%;
+}
