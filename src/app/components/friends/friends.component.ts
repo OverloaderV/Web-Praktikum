@@ -20,6 +20,7 @@ export class FriendsComponent implements OnInit {
     public user: Array<string> = [];
     public addInput:string = "";
     public curUser:String ="";
+    public ofriend: Array<Friend> = [];
 
 
     public constructor(private router:Router, private backendService:BackendService, private context:ContextService, private intervalService:IntervalService) {
@@ -112,16 +113,20 @@ export class FriendsComponent implements OnInit {
         
         this.backendService.loadFriends()
               .subscribe((friend:Array<Friend>) => {
-                this.friend = friend;
-              })
-              this.backendService.unreadMessageCounts()
-              .subscribe((messages:Map<string, number>) => {
+                this.ofriend = friend;
+                this.backendService.unreadMessageCounts()
+                .subscribe((messages:Map<string, number>) => {
                 this.messages = messages;
+                for(let i = 0; i < this.friend.length; i++) {
+                    this.ofriend[i].unreadMessages = this.messages.get(this.friend[i].username) as number;
+                    
+                   }
+                   this.friend = this.ofriend;
               })
+              })
+              
               //const friends = this.currentUser.friends;
-               for(let i = 0; i < this.friend.length; i++) {
-                this.friend[i].unreadMessages = this.messages.get(this.friend[i].username) as number;
-               }
+               
     }
 }
 
