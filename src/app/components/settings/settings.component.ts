@@ -41,7 +41,7 @@ export class SettingsComponent implements OnInit {
                     user.lastName ? user.lastName : '',
                     user.coffeeOrTea ? user.coffeeOrTea : 'neither',
                     user.description ? user.description : '',
-                    user.layout ? user.layout : ''
+                    user.layout ? user.layout : 'oneline'
                 );
                 this.fname = this.profile.firstName;
                 this.lname = this.profile.lastName;
