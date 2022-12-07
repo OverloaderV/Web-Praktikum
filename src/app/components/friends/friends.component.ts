@@ -72,16 +72,14 @@ export class FriendsComponent implements OnInit {
                     this.backendService.friendRequest(this.addInput)
                     .subscribe((b:boolean) => {
         
-                        if(b) {console.log("friend reqeust send")}
+                        if(b) {console.log("friend reqeust send");
+                                this.addInput = "";}
                         else {console.log("friend request cannot be send")}
         
                     }) 
             
             } else {console.log("user doesn't exist")}
-            })
-
-            this.addInput = "";
-            
+            })            
         }
         public accept(fr:Friend):void {
 
@@ -105,6 +103,7 @@ export class FriendsComponent implements OnInit {
                 if(ok) {console.log("friend request dismissed")} 
                 else {console.log("friend request cannot be dismissed")}
             })
+            fr.status = "";
             this.router.navigate(["/friends"]);
         }
     
