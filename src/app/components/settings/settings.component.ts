@@ -35,7 +35,6 @@ export class SettingsComponent implements OnInit {
             if (user == null) {
                 console.log("Fehler");
             } else {
-                console.log(user);
                 this.user = user;
                 this.profile = new Profile(
                     user.firstName ? user.firstName : '', 
@@ -60,9 +59,6 @@ export class SettingsComponent implements OnInit {
             this.profile.coffeeOrTea = this.drink;
             this.profile.description = this.aboutme;
             this.profile.layout = this.layout;
-            
-            console.log(this.profile);
-            
             
             this.backend.saveCurrentUserProfile(this.profile)
             .subscribe((success) => console.log("Saved profile:", success));
