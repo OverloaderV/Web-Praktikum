@@ -16,20 +16,13 @@ export class SettingsComponent implements OnInit {
     private user: User | null = null;
     private profile: Profile | null = null;
     
-    private fname: HTMLElement | null;
-    private lname: HTMLElement | null;
-    private drink: HTMLSelectElement | null;
-    private aboutme: HTMLElement | null;
-    private oneline: HTMLInputElement | null;
-    private sepline: HTMLInputElement | null;
+    public fname: string = "";
+    public lname: string = "";
+    public drink: string = "";
+    public aboutme: string = "";
+    public layout: string = "";
 
     public constructor(private backend: BackendService, private context: ContextService, private router: Router) {
-        this.fname = document.getElementById("fname");
-        this.lname = document.getElementById("lname");
-        this.drink = document.getElementById("drink") as HTMLSelectElement;
-        this.aboutme = document.getElementById("aboutme");
-        this.oneline = document.getElementById("oneline") as HTMLInputElement;
-        this.sepline = document.getElementById("sepline") as HTMLInputElement;
     }
 
     public ngOnInit(): void {
@@ -42,34 +35,38 @@ export class SettingsComponent implements OnInit {
             if (user == null) {
                 console.log("Fehler");
             } else {
+                console.log(user);
                 this.user = user;
                 this.profile = new Profile(
                     user.firstName ? user.firstName : '', 
                     user.lastName ? user.lastName : '',
                     user.coffeeOrTea ? user.coffeeOrTea : 'neither',
                     user.description ? user.description : '',
-                    user.chatLayout ? user.chatLayout : ''
+                    user.layout ? user.layout : ''
                 );
-                if (this.fname != null) {
-                    this.fname.innerText = this.profile.firstName;
-                }
-                if (this.lname != null) {
-                    this.lname.innerText = this.profile.lastName;
-                }
-                if (this.drink != null) {
-                    this.drink.value = this.profile.coffeeOrTea;
-                }
-                if (this.aboutme != null) {
-                    this.aboutme.innerText = this.profile.description;
-                }
-                if (this.oneline != null && this.sepline != null) {
-                    if (this.profile.layout == "oneline") {
-                        this.oneline.select();
-                    } else if (this.profile.layout == "sepline") {
-                        this.sepline.select();
-                    }
-                }
+                this.fname = this.profile.firstName;
+                this.lname = this.profile.lastName;
+                this.drink = this.profile.coffeeOrTea;
+                this.aboutme = this.profile.description;
+                this.layout = this.profile.layout;
             }
         })
+    }
+
+    public submit(): void {
+        if (this.profile !== null) {
+            this.profile.firstName = this.fname;
+            this.profile.lastName = this.lname;
+            this.profile.coffeeOrTea = this.drink;
+            this.profile.description = this.aboutme;
+            this.profile.layout = this.layout;
+            
+            console.log(this.profile);
+            
+            
+            this.backend.saveCurrentUserProfile(this.profile)
+            .subscribe((success) => console.log("Saved profile:", success));
+            this.router.navigate(["/friends"]);
+        }
     }
 }
