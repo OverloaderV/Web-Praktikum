@@ -19,7 +19,7 @@ export class FriendsComponent implements OnInit {
     public currentUser = new User();
     public user: Array<string> = [];
     public addInput:string = "";
-    public curUser:String ="";
+    public curUser:string ="";
     public ofriend: Array<Friend> = [];
 
 
@@ -32,6 +32,10 @@ export class FriendsComponent implements OnInit {
         if(this.context.loggedInUsername==""){
             this.router.navigate(["/login"]);
         }
+        this.backendService.listUsers()
+        .subscribe((user:string[]) =>{
+            this.user = user;
+        });
         this.intervalService.clearIntervals();
         this.backendService.loadCurrentUser()
         .subscribe((user:User| null) =>{
