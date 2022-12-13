@@ -84,8 +84,16 @@ class BackendService{
         }
     }
 
-    public function friendRequest(){
-        
+    public function friendRequest(Friend $fren){ //maybe done
+        try {
+            HttpClient::post(
+                $this->base . "/friend",
+                array("username" => "<?php {$fren->getUsername()} ?>"),
+                $_SESSION["token"]);
+            echo "Requested...";
+        } catch(\Exception $e) {
+            echo "Error...";
+        }
     }
 
 
