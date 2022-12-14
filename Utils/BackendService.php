@@ -49,7 +49,7 @@ class BackendService{
 
     public function loadUser($user){ //todo not working
         try {
-            $data = HttpClient::get($this->base . $this->id ."/user/".  "<?php $user ?>",
+            $data = HttpClient::get($this->base . $this->id ."/user/".  "$user",
                 $_SESSION["token"]);
                 $us = User::fromJson($data);
             return $us;
@@ -61,7 +61,7 @@ class BackendService{
     public function saveUser(User $user){ //todo not working 
         try {
             HttpClient::post(
-                $this->base . $this->id . "/user/<?php {$user->getName()} ?>",
+                $this->base . $this->id . "/user/{$user->getName()}",
                 array("customA" => "abc", "customB" => "xyz"),
                 $_SESSION["token"]);
             echo "Saved...";
@@ -88,7 +88,7 @@ class BackendService{
         try {
             HttpClient::post(
                 $this->base . $this->id ."/friend",
-                array("username" => "<?php {$fren->getUsername()} ?>"),
+                array("username" => "{$fren->getUsername()}"),
                 $_SESSION["token"]);
             echo "Requested...";
         } catch(\Exception $e) {
@@ -96,9 +96,9 @@ class BackendService{
         }
     }
 
-    public function friendAccept(Friend $frin){ //todo
+    public function friendAccept(Friend $frin){ //seems to work
         try {
-            HttpClient::put($this->base . $this->id . "/friend/<?php {$frin->getUsername()} ?>",
+            HttpClient::put($this->base . $this->id . "/friend/{$frin->getUsername()}",
                 array("status" => "accepted"),
                 $_SESSION["token"]);
             echo "Accepted...";
@@ -109,7 +109,7 @@ class BackendService{
 
     public function friendDismiss(Friend $frin){ //todo
         try {
-            HttpClient::put($this->base . $this->id . "/friend/<?php {$frin->getUsername()} ?>",
+            HttpClient::put($this->base . $this->id . "/friend/{$frin->getUsername()}",
                 array("status" => "dismissed"),
                 $_SESSION["token"]);
             echo "Accepted...";
@@ -118,9 +118,9 @@ class BackendService{
         }
     }
 
-    public function friendRemove(Friend $friend){ //todo
+    public function friendRemove(Friend $friend){ //seems to work
         try {
-            HttpClient::delete($this->base . $this->id . "/friend/<?php {$friend->getUsername()}>",
+            HttpClient::delete($this->base . $this->id . "/friend/{$friend->getUsername()}",
                 $_SESSION["token"]);
             echo "Removed...";
         } catch(\Exception $e) {
@@ -143,7 +143,7 @@ class BackendService{
 
     public function getMessages( Friend $friend){ //todo
         try {
-            $list = HttpClient::get($this->base . $this->id .  "/message/<?php {$friend->getUsername()} ?>",
+            $list = HttpClient::get($this->base . $this->id .  "/message/{$friend->getUsername()}",
                 $_SESSION["token"]);
             var_dump($list);
         } catch(\Exception $e) {
@@ -161,13 +161,14 @@ class BackendService{
         }
     }
 
-    public function listUsers(){
+    public function listUsers(){ //todo
         try {
             $list = HttpClient::get($this->base . $this->id . "/user",
                 $_SESSION["token"]);
-            var_dump($list);
+            return($list);
         } catch(\Exception $e) {
             echo "Error while loading list";
+            return false;
         }
     }
 
