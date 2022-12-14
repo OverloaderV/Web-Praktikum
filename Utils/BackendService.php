@@ -25,7 +25,7 @@ class BackendService{
     public function login($user,$pass){
         try {
             $result = HttpClient::post($this->base . $this->id . "/login", 
-                array("username" => "<?php $user ?>", "password" => "<?php $pass ?>"));
+                array("username" => "$user", "password" => "$pass"));
             echo "Token: " . $result->token;
             $_SESSION["token"] = $result->token;
             return true;
@@ -37,7 +37,7 @@ class BackendService{
 
     public function register($user,$pass){ //add ver if exists!
         try {
-            $result = HttpClient::post($this->base .$this->id . "/register", array("username" => "<?php $user ?>", "password" => "<?php $pass ?>"));
+            $result = HttpClient::post($this->base .$this->id . "/register", array("username" => "$user", "password" => "$pass"));
             echo "Token: " . $result->token;
             $_SESSION["token"] = $result->token;
             return true;
@@ -128,13 +128,13 @@ class BackendService{
         }
     }
 
-    public function userExists($username){ //todo not working rn
+    public function userExists(string $username){ //todo not working rn
         try {
             echo $username;
             echo "<br>";
-            echo ($this->base . $this->id . "/user/" . $username);
+            echo ($this->base . $this->id . '/user/' . $username);
             echo "<br>";
-            HttpClient::get($this->base . $this->id . "/user/" . $username);
+            HttpClient::get($this->base . $this->id . '/user/' . $username);
             return true;
         } catch(\Exception $e) {
             return false;
