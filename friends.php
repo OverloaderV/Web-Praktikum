@@ -1,3 +1,12 @@
+<?php
+require("start.php");
+
+if(!isset($_SESSION["user"])){
+    header("Location: login.php");
+}
+
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,10 +17,10 @@
         <script src="js/initChat.js"></script>
         <script src="js/friends.js"></script>
         <h2>Friends</h2>
-        <a href="logout.html">
+        <a href="logout.php">
             &ltLogout
         </a> | 
-        <a href="settings.html">
+        <a href="settings.php">
             Settings
         </a>
             <hr>

@@ -13,7 +13,7 @@ session_unset();
             <h2>Logged out...</h2>
             See you!
             <p>
-                <a href="login.html">
+                <a href="login.php">
                 Login again
                 </a>
             </p>

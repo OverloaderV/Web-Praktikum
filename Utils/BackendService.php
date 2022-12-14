@@ -26,11 +26,10 @@ class BackendService{
         try {
             $result = HttpClient::post($this->base . $this->id . "/login", 
                 array("username" => "$user", "password" => "$pass"));
-            echo "Token: " . $result->token;
+            //echo "Token: " . $result->token;
             $_SESSION["token"] = $result->token;
             return true;
         } catch(\Exception $e) {
-            echo "Authentification failed";
             return false;
         }
     }
@@ -47,7 +46,7 @@ class BackendService{
         }
     }
 
-    public function loadUser($user){ //todo not working
+    public function loadUser($user){ 
         try {
             $data = HttpClient::get($this->base . $this->id ."/user/".  "$user",
                 $_SESSION["token"]);
@@ -58,7 +57,7 @@ class BackendService{
         }
     }
 
-    public function saveUser(User $user){ //todo not working 
+    public function saveUser(User $user){ //untested
         try {
             HttpClient::post(
                 $this->base . $this->id . "/user/{$user->getName()}",
@@ -70,7 +69,7 @@ class BackendService{
         }
     }
 
-    public function loadFriends(){  //should work?
+    public function loadFriends(){ 
         try {
             $data = HttpClient::get($this->base. $this->id ."/friend",
                 $_SESSION["token"]);
@@ -84,7 +83,7 @@ class BackendService{
             return false;
         }
     }
-    public function friendRequest(Friend $fren){ //todo
+    public function friendRequest(Friend $fren){ 
         try {
             HttpClient::post(
                 $this->base . $this->id ."/friend",
@@ -96,7 +95,7 @@ class BackendService{
         }
     }
 
-    public function friendAccept(Friend $frin){ //seems to work
+    public function friendAccept(Friend $frin){ 
         try {
             HttpClient::put($this->base . $this->id . "/friend/{$frin->getUsername()}",
                 array("status" => "accepted"),
@@ -118,7 +117,7 @@ class BackendService{
         }
     }
 
-    public function friendRemove(Friend $friend){ //seems to work
+    public function friendRemove(Friend $friend){
         try {
             HttpClient::delete($this->base . $this->id . "/friend/{$friend->getUsername()}",
                 $_SESSION["token"]);
@@ -128,12 +127,8 @@ class BackendService{
         }
     }
 
-    public function userExists(string $username){ //todo not working rn
+    public function userExists(string $username){ 
         try {
-            echo $username;
-            echo "<br>";
-            echo ($this->base . $this->id . '/user/' . $username);
-            echo "<br>";
             HttpClient::get($this->base . $this->id . '/user/' . $username);
             return true;
         } catch(\Exception $e) {
@@ -141,7 +136,7 @@ class BackendService{
         }
     }
 
-    public function getMessages( Friend $friend){ //todo
+    public function getMessages( Friend $friend){ 
         try {
             $list = HttpClient::get($this->base . $this->id .  "/message/{$friend->getUsername()}",
                 $_SESSION["token"]);
@@ -151,11 +146,11 @@ class BackendService{
         }
     }
 
-    public function getUnread(){ //todo
+    public function getUnread(){ 
         try {
             $data = HttpClient::get($this->base . $this->id . "/unread",
                 $_SESSION["token"]);
-            var_dump($data);
+            return($data);
         } catch(\Exception $e) {
             echo "Error...";
         }
