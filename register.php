@@ -1,3 +1,26 @@
+<?php 
+require("start.php");
+$checkname = false;
+$checkpassword = false;
+$passwordconfirm = false;
+
+if(isset($_POST["name"])) {
+    $name = $_POST["name"];
+    $password = $_POST["password"];
+    $cpassword = $_POST["cpassword"];
+
+    if (strlen($name) < 3) {
+        $checkname = true;
+    }
+    if(strlen($password) < 8) {
+        $checkpassword = true;
+    }
+    if($password === $cpassword) {
+        $passwordconfirm = false;
+    } else {$passwordconfirm = true;}
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -12,28 +35,48 @@
     <img src="images/user.png" width="100px">
     <p>
     <h2 id="heading">Register Yourself</h2>
+    <?php 
+        if($checkname) {
+            echo "Name ist zu kurz!";
+            echo "</p> </p>";
+        }
+        if($checkname) {
+            echo "Passwort ist zu kurz!";
+            echo "</p> </p>";
+        }
+        if($passwordconfirm) {
+            echo "Passwörter stimmen nicht überein!";
+        }
+    ?>
     </p>
-    <form action="friends.html" id="register1" onsubmit="submitCheck()">
+    <form action="register.php" id="register1" method="post">
+        <!-- onsubmit="submitCheck()" -->
         <fieldset class="login">
             <legend>Register</legend>
             <div class="userinput" >
                 <label for="Name" class="userinput">Username</label>
-                <input required type="text" name="Name" id="Name" placeholder="Username" onkeyup="testLength('Name', 3)">
+                <input required type="text" name="name" id="Name" placeholder="Username" onkeyup="testLength('Name', 3)">
             </div>
             <div class="userinput">
                 <label for="Pass" class="userinput">Password</label>
-                <input type="password" name="Pass" id="Pass" placeholder="Password" onkeyup="testLength('Pass', 8)">
+                <input type="password" name="password" id="Pass" placeholder="Password" onkeyup="testLength('Pass', 8)">
             </div>
             <div class="userinput">
                 <label for="cPass" class="userinput">Confirm Password</label>
-                <input type="password" name="cPass" id="cPass" placeholder="Confirm Password" onkeyup="confirm()">
+                <input type="password" name="cpassword" id="cPass" placeholder="Confirm Password" onkeyup="confirm()">
             </div>
         </fieldset>
-        <a href="login.html" class="isbutton">
+        <a href="login.php" class="isbutton">
             <button type="button" class="button_grey">Cancel</button>
         </a>
         <input type="submit" value="Create Account" class="button_coloured">
     </form>
 </body>
+
+<?php 
+
+
+
+?>
 
 </html>
