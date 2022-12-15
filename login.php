@@ -43,7 +43,7 @@ if(isset($_POST["username"])&&isset($_POST["password"])){
                 </div>
             </fieldset>
         
-                <a href="register.html" class="isbutton">
+                <a href="register.php" class="isbutton">
                     <button type="button" class="button_grey">Register</button>
                 </a>
                 <button type="submit" class="button_coloured" >Login</button>

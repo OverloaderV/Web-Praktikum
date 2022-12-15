@@ -35,12 +35,7 @@ $unread = $service->getUnread();
         <link rel="stylesheet" href="stylesheet.css">
     </head>
     <body>
-        <script>
-            window.chatToken = "<?= $_SESSION['token'] ?>";
-            window.chatCollectionId = "<?= CHAT_SERVER_ID ?>";
-            window.chatServer = "<?= CHAT_SERVER_URL ?>";
-        </script>
-        <script src="js/friends.js"></script>
+        
         <h2>Friends of <?php echo $_SESSION["user"]; ?></h2>
         <a href="logout.php">
             &ltLogout
@@ -50,7 +45,7 @@ $unread = $service->getUnread();
         </a>
             <hr>
             <fieldset class="chatbox">
-                <ul>
+                <ul id="ul">
                     <?php
                         if(sizeof($friends)==0){
                         echo "You have no friends, that's sad! Start sending out friend requests.";
@@ -78,7 +73,7 @@ $unread = $service->getUnread();
                 <hr>
 
                 <h2>New Requests</h2>
-                <ol>
+                <ol id="requests">
                     <?php
                     foreach ($friends as $val) {
                         if ($val->getStatus() == "requested") {
@@ -96,7 +91,7 @@ $unread = $service->getUnread();
                             echo "<input type='hidden' name='name' value='$frr'>";
                             echo "<input type='hidden' name='decide' value='false'>";
                             echo "<button type='submit' class='button_grey'>";
-                            echo "Submit";
+                            echo "Dismiss";
                             echo "</button>";
                             echo "</form>";
                             echo "</li>";
@@ -110,5 +105,12 @@ $unread = $service->getUnread();
                 <datalist id="names"></datalist>
                 <input type="submit" class="widebutton button_coloured" value="Add">
                 </form>
+
+        <script>
+            window.chatToken = "<?= $_SESSION['token'] ?>";
+            window.chatCollectionID = "<?= CHAT_SERVER_ID ?>";
+            window.chatServer = "<?= CHAT_SERVER_URL ?>";
+        </script>
+        <script src="js/friends.js"></script>
     </body>
 </html>
