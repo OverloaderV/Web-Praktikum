@@ -4,25 +4,35 @@ $checkname = false;
 $checkpassword = false;
 $passwordconfirm = false;
 $checkexistence = false;
+$correct = true;
 
 if(isset($_POST["name"])) {
     $name = $_POST["name"];
     $password = $_POST["password"];
     $cpassword = $_POST["cpassword"];
 
-
     if($service->userExists($name)) {
         $checkexistence = true;
+        $correct = false;
     }
     if (strlen($name) < 3) {
         $checkname = true;
+        $correct = false;
     }
     if(strlen($password) < 8) {
         $checkpassword = true;
+        $correct = false;
     }
     if($password === $cpassword) {
-        $passwordconfirm = false;
-    } else {$passwordconfirm = true;}
+    } else {$passwordconfirm = true; $correct = false;}
+
+    if($correct) {
+        if($service->register($name, $password)) {
+            
+            header("Location: friends.php");
+        }
+        
+    }
 }
 ?>
 
