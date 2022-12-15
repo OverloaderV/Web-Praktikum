@@ -3,12 +3,17 @@ require("start.php");
 $checkname = false;
 $checkpassword = false;
 $passwordconfirm = false;
+$checkexistence = false;
 
 if(isset($_POST["name"])) {
     $name = $_POST["name"];
     $password = $_POST["password"];
     $cpassword = $_POST["cpassword"];
 
+
+    if($service->userExists($name)) {
+        $checkexistence = true;
+    }
     if (strlen($name) < 3) {
         $checkname = true;
     }
@@ -46,6 +51,10 @@ if(isset($_POST["name"])) {
         }
         if($passwordconfirm) {
             echo "Passwörter stimmen nicht überein!";
+            echo "</p> </p>";
+        }
+        if($checkexistence) {
+            echo "Nutzer existiert bereits!";
         }
     ?>
     </p>
