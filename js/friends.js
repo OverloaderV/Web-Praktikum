@@ -23,8 +23,8 @@ xmlhttp.send();
 getUsers();
 
 
-//window.setInterval(refresh,2000);
-refresh();
+window.setInterval(refresh,2000);
+
 function refresh(){
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
@@ -111,19 +111,39 @@ function refresh(){
         let data = JSON.parse(xmlhttps.responseText);
         console.log(data);
 
-        for(j=0;j<data.length;j++){
+        if(data == null){
+
+        }else {
+            for(var key in data){
+                console.log(data[key]);
+                let frun = document.getElementById(key);
+                frun.innerHTML = "";
+                let a = document.createElement("a");
+                a.href = "chat.php?username="+key;
+                a.innerHTML= key;
+                let span = document.createElement("span");
+                span.className= "urmsg";
+                span.innerHTML = data[key];
+                frun.innerHTML = "";
+                frun.appendChild(a);
+                frun.appendChild(span);
+            }
+        }
+
+
 
         }
     }
+    xmlhttps.open("GET", window.chatServer + "/"+ window.chatCollectionID +"/unread", true);
+    xmlhttps.setRequestHeader('Content-type', 'application/json');
+    xmlhttps.setRequestHeader('Authorization', 'Bearer '+window.chatToken);
+    xmlhttps.send();
 };
-xmlhttps.open("GET", window.chatServer + "/"+ window.chatCollectionID +"/unread", true);
-xmlhttps.setRequestHeader('Content-type', 'application/json');
-xmlhttps.setRequestHeader('Authorization', 'Bearer '+window.chatToken);
-xmlhttps.send();
+
 
     
 
-}
+
 /*
 function keyup(){
     if (added){
