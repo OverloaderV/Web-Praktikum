@@ -1,3 +1,12 @@
+<?php 
+require("start.php");
+
+if(isset($_SESSION["user"])) {
+    
+} else {header("Location: login.php");}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -12,9 +21,9 @@
     <h2>Chat with Tom</h2>
     </p>
     <p>
-        <a href="friends.html">&lt; Back</a> |
-        <a href="profile.html">Profile</a> |
-        <a href="friends.html" class="removefriend">Remove Friend</a>
+        <a href="friends.php">&lt; Back</a> |
+        <a href="profile.php">Profile</a> |
+        <a href="friends.php" class="removefriend">Remove Friend</a>
     </p>
     <hr>
     <fieldset class="chatbox" id="chatbox">
