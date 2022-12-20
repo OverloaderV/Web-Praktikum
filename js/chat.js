@@ -1,6 +1,6 @@
 // TODO auslagern
-let other_user = document.getElementById("cPartner").innerHTML;
-console.log(document.getElementById("cPartner").innerHTML);
+let other_user = document.getElementById("cpartner").innerHTML;
+console.log(document.getElementById("cpartner").innerHTML);
 /**
  * How many messages are already displayed in the chatbox
  */
