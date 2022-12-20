@@ -85,8 +85,8 @@ $unread = $service->getUnread();
                         if ($val->getStatus() == "requested") {
                             $frr = $val->getUsername();
                             echo "<li>";
+                            echo "<form action='friends.php' class='reqform method='post'>";
                             echo $frr;
-                            echo "<form action='friends.php' method='post'>";
                             echo "<button type='submit' name='action' value='accept::$frr' class='button_grey'>";
                             echo "Accept";
                             echo "</button>";

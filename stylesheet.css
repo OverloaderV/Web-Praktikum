@@ -212,3 +212,6 @@ li.friendsddown{
 input:focus {
   outline: none;
 }
+.reqfrom{
+  float:right;
+}

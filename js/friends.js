@@ -61,18 +61,19 @@ function refresh(){
                     buttona.type = "submit";
                     buttona.className = "button_grey";
                     buttona.name="action"
-                    buttona.value="accept::".stuff[i].username;
+                    buttona.value="accept::"+stuff[i].username;
                     buttona.innerHTML = "Accept";
                     buttonb.type = "submit";
                     buttonb.className = "button_grey";
                     buttonb.innerHTML= "Dismiss";
                     buttona.name="action"
-                    buttona.value="dismiss::".stuff[i].username;
+                    buttona.value="dismiss::"+stuff[i].username;
                     form.action = "friends.php";
                     form.method = "post";
+                    form.className="reqform";
+                    form.innerHTML=stuff[i].username;
                     form.appendChild(buttona);
                     form.appendChild(buttonb);
-                    li.innerHTML = stuff[i].username;
                     li.appendChild(form);
                     req.appendChild(li);
                 }
