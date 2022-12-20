@@ -30,7 +30,6 @@ else {
 </head>
 
 <body>
-    <script src="js/initChat.js"></script>
     <p>
     <?php echo "<h2>Chat with $username</h2>" ?>
     </p>
@@ -47,7 +46,13 @@ else {
         <input type="text" placeholder="New Message" name="msg" id="msg" autocomplete="off" class="wide" required>
         <input type="submit" value="Send" class="widebutton button_coloured">
     </form>
-    <script src="js/chat.js"></script>
+
+    <script>
+        window.chatToken = "<?= $_SESSION['token'] ?>";
+        window.chatCollectionID = "<?= CHAT_SERVER_ID ?>";
+        window.chatServer = "<?= CHAT_SERVER_URL ?>";
+    </script>
+        <script src="js/chat.js"></script>
 </body>
 
 </html>
