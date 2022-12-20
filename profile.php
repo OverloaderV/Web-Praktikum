@@ -37,9 +37,9 @@ if ($user->layout == null) {
     <h2>Profile of <?php echo $user->getName() ?></h2>
 
     <div>
-        <a href="chat.html">&lt Back to Chat</a> |
+        <a href="chat.php?username ="<?= $user->getName()?>>&lt Back to Chat</a> |
         <a href=<?php 
-            echo "friends.html?remove=";
+            echo "friends.php?remove=";
             echo $user->getName();
         ?> class="removefriend">Remove Friend</a>
     </div>

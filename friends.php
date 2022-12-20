@@ -10,8 +10,8 @@ if(isset($_POST["username"])){
     $newfr = new Friend($_POST["username"]);
     $service->friendRequest($newfr);
 }
-if(isset($_POST["remove"])){
-    $newfr = new Friend($_POST['remove']);
+if(isset($_GET["remove"])){
+    $newfr = new Friend($_GET['remove']);
     $service->friendRemove($newfr);
 }
 

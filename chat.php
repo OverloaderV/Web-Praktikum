@@ -31,7 +31,9 @@ else {
 
 <body>
     <p>
-    <?php echo "<h2>Chat with $username</h2>" ?>
+    <?php 
+    echo "<h2>Chat with <span id='cpartner'>$username</span> </h2>";
+            ?>
     </p>
     <p>
         <a href="friends.php">&lt; Back</a> |
