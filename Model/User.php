@@ -4,6 +4,11 @@ use JsonSerializable;
 
 class User implements JsonSerializable{
     private $username;
+    public $fname;
+    public $lname;
+    public $drink;
+    public $aboutme;
+    public $userinput;
 
     public function __construct($usna = null){
         $this->username = $usna;
