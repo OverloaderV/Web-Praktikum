@@ -38,7 +38,10 @@ if ($user->layout == null) {
 
     <div>
         <a href="chat.html">&lt Back to Chat</a> |
-        <a href="friends.html" class="removefriend">Remove Friend</a>
+        <a href=<?php 
+            echo "friends.html?remove=";
+            echo $user->getName();
+        ?> class="removefriend">Remove Friend</a>
     </div>
 
     <br>
