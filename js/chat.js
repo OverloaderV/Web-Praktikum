@@ -11,6 +11,7 @@ let lastlength = 0;
  */
 function getMessages() {
     var xmlhttp = new XMLHttpRequest();
+    console.log("test2");
     // Function that updates the chatbox
     xmlhttp.onreadystatechange = function () {
         let chatbox = document.getElementById("chatbox");
@@ -25,7 +26,10 @@ function getMessages() {
 
                     let content = document.createElement("span");
                     content.classList.add("cmsg");
+                    console.log("test");
                     let content_text = document.createTextNode(data[i].from.concat(": ").concat(data[i].msg))
+                    console.log(data[i].from);
+
                     content.appendChild(content_text);
                     message.appendChild(content);
 

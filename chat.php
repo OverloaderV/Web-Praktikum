@@ -13,10 +13,10 @@ $username = $_GET["username"];
 echo "GET[username] = " . $username;
 echo "<p> </p>";
 echo "SESSION[user] = " . $_SESSION["user"];
-if($username === $_SESSION["user"]) {
-    echo "username in qeury";
-} else {
-    //header("Location: friends.php");
+if(isset($_GET["username"])) {
+}
+else {
+    header("Location: friends.php");
 }
 
 ?>
@@ -37,7 +37,7 @@ if($username === $_SESSION["user"]) {
     <p>
         <a href="friends.php">&lt; Back</a> |
         <a href="profile.php?username=<?=$username?>">Profile </a> |
-        <a href="friends.php" class="removefriend">Remove Friend</a>
+        <a href="friends.php?remove=$<?=$username?>" class="removefriend">Remove Friend</a>
     </p>
     <hr>
     <fieldset class="chatbox" id="chatbox">
