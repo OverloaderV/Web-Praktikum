@@ -7,24 +7,31 @@ if(!isset($_SESSION["user"])) {
 }
 
 $user = $service->loadUser($_SESSION["user"]);
-if ($user->fname == null) {
-    $user->fname = "";
-}
-if ($user->lname == null) {
-    $user->lname = "";
-}
-if ($user->drink == null) {
-    $user->drink = "neither";
-}
-if ($user->aboutme == null) {
-    $user->aboutme = "";
-}
-if ($user->userinput == null) {
-    $user->userinput = "oneline";
-}
 
-var_dump($user);
-
+if(!isset($_POST["fname"])) {
+    if ($user->fname == null) {
+        $user->fname = "";
+    }
+    if ($user->lname == null) {
+        $user->lname = "";
+    }
+    if ($user->drink == null) {
+        $user->drink = "neither";
+    }
+    if ($user->aboutme == null) {
+        $user->aboutme = "";
+    }
+    if ($user->layout == null) {
+        $user->layout = "oneline";
+    }
+} else {
+    $user->fname = $_POST["fname"];
+    $user->lname = $_POST["lname"];
+    $user->drink = $_POST["drink"];
+    $user->aboutme = $_POST["aboutme"];
+    $user->layout = $_POST["layout"];
+    $service->saveUser($user);
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +44,7 @@ var_dump($user);
 
 <body>
     <h2>Profile Settings</h2>
-    <form action="settings.html">
+    <form action="settings.php" method="post">
         <fieldset>
             <legend>Base Data</legend>
             <div class="userinput">
@@ -50,10 +57,10 @@ var_dump($user);
             </div>
             <div class="userinput">
             <label for="drink" class="userprofile">Coffee or Tea?</label>
-            <select name="drink" id="drink" class="select"value=<?php echo $user->drink ?>>
-                <option value="neither">Neither nor</option>
-                <option value="coffee">Coffee</option>
-                <option value="tea">Tea</option>
+            <select name="drink" id="drink" class="select">
+                <option value="neither" <?php echo ($user->drink == 'neither')?'selected="selected"':''?>>Neither nor</option>
+                <option value="coffee" <?php echo ($user->drink == 'coffee')?'selected="selected"':''?>>Coffee</option>
+                <option value="tea" <?php echo ($user->drink == 'tea')?'selected="selected"':''?>>Tea</option>
             </select>
             </div>
         </fieldset><br>
@@ -66,16 +73,16 @@ var_dump($user);
         <fieldset>
             <legend>Preferred Chat Layout</legend>
             <div class="userinput">
-                <input type="radio" name="layout" id="oneline" value="oneline" <?php echo ($user->userinput == 'oneline')?'checked':''?>><label for="oneline">Username and Message in
+                <input type="radio" name="layout" id="oneline" value="oneline" <?php echo ($user->layout == 'oneline')?'checked':''?>><label for="oneline">Username and Message in
                     one line</label>
             </div>
             <div class="userinput">
-                <input type="radio" name="layout" id="sepline" value="sepline"<?php echo ($user->userinput == 'sepline')?'checked':''?>><label for="sepline">Username and Message in
+                <input type="radio" name="layout" id="sepline" value="sepline" <?php echo ($user->layout == 'sepline')?'checked':''?>><label for="sepline">Username and Message in
                     seperate lines</label>
             </div>
         </fieldset>
         <div class="center">
-        <a href="friends.html" class="isbutton">
+        <a href="friends.php" class="isbutton">
             <button type="button" class="button_grey">Cancel</button>
         </a>
         <input type="submit" value="Submit" class="button_coloured">

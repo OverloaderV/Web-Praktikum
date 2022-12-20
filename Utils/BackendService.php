@@ -61,7 +61,7 @@ class BackendService{
         try {
             HttpClient::post(
                 $this->base . $this->id . "/user/{$user->getName()}",
-                array("customA" => "abc", "customB" => "xyz"),
+                array("fname" => $user->fname, "lname" => $user->lname, "drink" => $user->drink, "aboutme" => $user->aboutme, "layout" => $user->layout),
                 $_SESSION["token"]);
             echo "Saved...";
         } catch(\Exception $e) {

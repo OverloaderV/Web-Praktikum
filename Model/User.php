@@ -8,7 +8,7 @@ class User implements JsonSerializable{
     public $lname;
     public $drink;
     public $aboutme;
-    public $userinput;
+    public $layout;
 
     public function __construct($usna = null){
         $this->username = $usna;
