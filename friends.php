@@ -10,17 +10,23 @@ if(isset($_POST["username"])){
     $newfr = new Friend($_POST["username"]);
     $service->friendRequest($newfr);
 }
-if(isset($_POST["name"]) && isset($_POST["decide"])){
-    $newfr = new Friend($_POST['name']);
-    if($_POST["decide"]==true){
-        $service->friendAccept($newfr);
-    }else{
-        $service->friendDismiss($newfr);
-    }
-}
 if(isset($_POST["remove"])){
     $newfr = new Friend($_POST['remove']);
     $service->friendRemove($newfr);
+}
+
+if (isset($_POST['action'])) {
+    $value = $_POST['action'];
+
+    $parts = explode('::', $value);
+    if ($parts[0] == 'accept'){
+        $newfr = new Friend($parts[1]);
+        $service->friendAccept($newfr);
+    }
+    if($parts[0] == 'dismiss'){
+        $newfr = new Friend($parts[1]);
+        $service->friendDismiss($newfr);
+    }
 }
 
 
@@ -81,16 +87,10 @@ $unread = $service->getUnread();
                             echo "<li>";
                             echo $frr;
                             echo "<form action='friends.php' method='post'>";
-                            echo "<input type='hidden' name='name' value='$frr'>";
-                            echo "<input type='hidden' name='decide' value='true'>";
-                            echo "<button type='submit' class='button_grey'>";
+                            echo "<button type='submit' name='action' value='accept::$frr' class='button_grey'>";
                             echo "Accept";
                             echo "</button>";
-                            echo "</form>";
-                            echo "<form action='friends.php' method='post'>";
-                            echo "<input type='hidden' name='name' value='$frr'>";
-                            echo "<input type='hidden' name='decide' value='false'>";
-                            echo "<button type='submit' class='button_grey'>";
+                            echo "<button type='submit' name = 'action' value='dismiss::$frr' class='button_grey'>";
                             echo "Dismiss";
                             echo "</button>";
                             echo "</form>";

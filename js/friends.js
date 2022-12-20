@@ -55,45 +55,25 @@ function refresh(){
             for(i=0;i<stuff.length;i++){
                 if(stuff[i].status == "requested"){
                     let li = document.createElement("li");
-                    let forma = document.createElement("form");
-                    let formb = document.createElement("form");
-                    let inpname = document.createElement("input");
-                    let inpname2 = document.createElement("input");
-                    let inpacc = document.createElement("input");
-                    let inpdis = document.createElement("input");
+                    let form = document.createElement("form");
                     let buttona = document.createElement("button");
                     let buttonb = document.createElement("button");
                     buttona.type = "submit";
                     buttona.className = "button_grey";
+                    buttona.name="action"
+                    buttona.value="accept::".stuff[i].username;
                     buttona.innerHTML = "Accept";
                     buttonb.type = "submit";
                     buttonb.className = "button_grey";
                     buttonb.innerHTML= "Dismiss";
-                    inpname.type = "hidden";
-                    inpname2.type = "hidden";
-                    inpacc.type = "hidden";
-                    inpdis.type = "hidden";
-                    inpname.value = stuff[i].username;
-                    inpname2.value = stuff[i].username;
-                    inpacc.value = "true";
-                    inpdis.value = "false";
-                    inpname.name = "name";
-                    inpname2.name = "name";
-                    inpacc.name = "decide";
-                    inpdis.name = "decide";
-                    forma.action = "friends.php";
-                    forma.method = "post";
-                    formb.action = "friends.php";
-                    formb.method = "post";
-                    forma.appendChild(inpname2);
-                    forma.appendChild(inpacc);
-                    forma.appendChild(buttona);
-                    formb.appendChild(inpname);
-                    formb.appendChild(inpdis);
-                    formb.appendChild(buttonb);
+                    buttona.name="action"
+                    buttona.value="dismiss::".stuff[i].username;
+                    form.action = "friends.php";
+                    form.method = "post";
+                    form.appendChild(buttona);
+                    form.appendChild(buttonb);
                     li.innerHTML = stuff[i].username;
-                    li.appendChild(forma);
-                    li.appendChild(formb);
+                    li.appendChild(form);
                     req.appendChild(li);
                 }
             }
