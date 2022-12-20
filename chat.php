@@ -2,8 +2,22 @@
 require("start.php");
 
 if(isset($_SESSION["user"])) {
-    
-} else {header("Location: login.php");}
+} else {
+    header("Location: login.php");
+}
+
+$username = "";
+if(isset($_GET["username"])) {
+$username = $_GET["username"];
+}
+echo "GET[username] = " . $username;
+echo "<p> </p>";
+echo "SESSION[user] = " . $_SESSION["user"];
+if($username === $_SESSION["user"]) {
+    echo "username in qeury";
+} else {
+    //header("Location: friends.php");
+}
 
 ?>
 
@@ -11,18 +25,18 @@ if(isset($_SESSION["user"])) {
 <html>
 
 <head>
-    <title>Chat with Tom</title>
+    <?php echo "<title>Chat with $username</title>" ?>
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 
 <body>
     <script src="js/initChat.js"></script>
     <p>
-    <h2>Chat with Tom</h2>
+    <?php echo "<h2>Chat with $username</h2>" ?>
     </p>
     <p>
         <a href="friends.php">&lt; Back</a> |
-        <a href="profile.php">Profile</a> |
+        <a href="profile.php?username=<?=$username?>">Profile </a> |
         <a href="friends.php" class="removefriend">Remove Friend</a>
     </p>
     <hr>

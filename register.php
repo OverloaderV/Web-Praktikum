@@ -92,10 +92,9 @@ if(isset($_POST["name"])) {
     </form>
 </body>
 
-<?php 
-
-
-
-?>
+<script>
+window.chatCollectionId = "<?= CHAT_SERVER_ID ?>";
+window.chatServer = "<?= CHAT_SERVER_URL ?>";
+</script>
 
 </html>
