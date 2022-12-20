@@ -10,9 +10,9 @@ $username = "";
 if(isset($_GET["username"])) {
 $username = $_GET["username"];
 }
-echo "GET[username] = " . $username;
-echo "<p> </p>";
-echo "SESSION[user] = " . $_SESSION["user"];
+//echo "GET[username] = " . $username;
+//echo "<p> </p>";
+//echo "SESSION[user] = " . $_SESSION["user"];
 if(isset($_GET["username"])) {
 }
 else {
