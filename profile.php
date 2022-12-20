@@ -1,3 +1,30 @@
+<?php
+use Model\User;
+require("start.php");
+
+if(!isset($_SESSION["user"])) {
+    header("Location: login.php");
+}
+
+$user = $service->loadUser($_GET["username"]);
+
+if ($user->fname == null) {
+    $user->fname = "";
+}
+if ($user->lname == null) {
+    $user->lname = "";
+}
+if ($user->drink == null) {
+    $user->drink = "neither";
+}
+if ($user->aboutme == null) {
+    $user->aboutme = "";
+}
+if ($user->layout == null) {
+    $user->layout = "oneline";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +34,7 @@
 </head>
 
 <body>
-    <h2>Profile of Tom</h2>
+    <h2>Profile of <?php echo $user->getName() ?></h2>
 
     <div>
         <a href="chat.html">&lt Back to Chat</a> |
@@ -20,26 +47,26 @@
         <img id="pfpic" src="images/profile.png" width="500">
         <fieldset class="container">
         <label id="aboutme">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis accumsan ex, in sollicitudin magna.
-            Praesent commodo bibendum
-            lectus, in laoreet neque scelerisque at. Cras quis feugiat nisl, ut commodo mi. Etiam tempor mauris sit amet
-            euismod rhoncus. Proin
-            pharetra finibus sapien ac condimentum. Integer tristique varius velit, vel bibendum mauris pretium id.
-            Donec suscipit suscipit
-            velit, quis luctus lacus tempor id. Aliquam in quam imperdiet, rhoncus sapien id, fermentum eros. Nam
-            bibendum malesuada quam
-            vulputate suscipit. Mauris quam leo, pharetra eget metus id, aliquet congue mi. Pellentesque tincidunt
-            tortor ac ante interdum
-            tempor. Maecenas orci felis, pellentesque a viverra at, viverra at risus. Morbi tristique at enim vel
-            laoreet. Pellentesque elementum
-            augue vitae tempor sollicitudin. Nulla facilisi. Nullam porttitor nisl quis diam porttitor facilisis.
+            <?php echo $user->aboutme ?>
         
 
             <dl>
                 <dt>Coffee or Tea?</dt>
-                <dd id="drink">Tea</dd>
+                <dd id="drink"><?php 
+                    if ($user->drink == "coffee") {
+                        echo "Coffee";
+                    } else if ($user->drink == "tea") {
+                        echo "Tea";
+                    } else  {
+                        echo "Neither";
+                    }
+                ?></dd>
                 <dt>Name</dt>
-                <dd id="name">Thomas</dd>
+                <dd id="name"><?php 
+                    echo $user->fname;
+                    echo " ";
+                    echo $user->lname;
+                ?></dd>
 
             </dl>
         </label>
