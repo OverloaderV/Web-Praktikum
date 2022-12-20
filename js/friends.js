@@ -96,18 +96,21 @@ function refresh(){
 
         }else {
             for(var key in data){
-                console.log(data[key]);
+                console.log(data);
                 let frun = document.getElementById(key);
-                frun.innerHTML = "";
-                let a = document.createElement("a");
-                a.href = "chat.php?username="+key;
-                a.innerHTML= key;
-                let span = document.createElement("span");
-                span.className= "urmsg";
-                span.innerHTML = data[key];
-                frun.innerHTML = "";
-                frun.appendChild(a);
-                frun.appendChild(span);
+                if(frun != null){
+                    let frun = document.getElementById(key);
+                    frun.innerHTML = "";
+                    let a = document.createElement("a");
+                    a.href = "chat.php?username="+key;
+                    a.innerHTML= key;
+                    let span = document.createElement("span");
+                    span.className= "urmsg";
+                    span.innerHTML = data[key];
+                    frun.innerHTML = "";
+                    frun.appendChild(a);
+                    frun.appendChild(span);
+                }
             }
         }
 
