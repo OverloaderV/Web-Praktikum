@@ -38,7 +38,7 @@ else {
     <p>
         <a href="friends.php">&lt; Back</a> |
         <a href="profile.php?username=<?=$username?>">Profile </a> |
-        <a href="friends.php?remove=$<?=$username?>" class="removefriend">Remove Friend</a>
+        <a href="friends.php?remove=<?=$username?>" class="removefriend">Remove Friend</a>
     </p>
     <hr>
     <fieldset class="chatbox" id="chatbox">
