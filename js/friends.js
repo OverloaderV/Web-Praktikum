@@ -67,7 +67,7 @@ function refresh(){
                     buttonb.className = "button_grey";
                     buttonb.innerHTML= "Dismiss";
                     buttona.name="action"
-                    buttona.value="dismiss::"+stuff[i].username;
+                    buttonb.value="dismiss::"+stuff[i].username;
                     form.action = "friends.php";
                     form.method = "post";
                     form.className="reqform";
